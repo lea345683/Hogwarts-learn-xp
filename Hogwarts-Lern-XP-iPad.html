@@ -1,0 +1,1083 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<title>Hogwarts Lern-XP – iPad</title>
+<style>
+:root{
+ --bg:#f3f4f7;--card:#fff;--ink:#172033;--muted:#6b7280;--line:#e4e7ec;
+ --gold:#c99a35;--purple:#5b3aa8;--green:#16845b;--red:#c73a3a;
+ --shadow:0 12px 32px rgba(18,25,40,.09);--radius:20px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#111827 0,#25233c 210px,#f3f4f7 430px);color:var(--ink);
+font-family:Georgia,"Times New Roman",serif}
+button,input,select{font:inherit}button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.45}
+.app{max-width:1150px;margin:auto;padding:18px 16px 70px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#fff;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:12px}.crest{width:48px;height:48px;border:1px solid #ffffff33;border-radius:14px;
+display:grid;place-items:center;background:#ffffff10;font-size:25px}.brand h1{margin:0;font-size:22px}.brand small{color:#cfd3df;font-family:system-ui,sans-serif}
+.points{background:#fff;color:#312e55;border-radius:999px;padding:10px 15px;font-weight:900;box-shadow:var(--shadow);white-space:nowrap}
+.hero{color:#fff;background:linear-gradient(135deg,#191827,#312e55);border:1px solid #ffffff12;border-radius:24px;padding:24px;box-shadow:0 20px 45px #0003;position:relative;overflow:hidden}
+.hero:after{content:"✦";position:absolute;right:25px;top:12px;color:#ffffff20;font-size:90px}
+.hero h2{margin:0 0 6px;font-size:29px}.hero p{margin:0;color:#d9d8e4;font-family:system-ui,sans-serif;font-size:14px}
+.heroGrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}.houseName{font-size:30px;font-weight:900}.label{font:700 11px system-ui,sans-serif;letter-spacing:1px;color:#bfc2cf}
+.levelRow{display:flex;justify-content:space-between;align-items:end}.level{font-size:34px;font-weight:900}.rank{font-family:system-ui,sans-serif;font-size:13px;text-align:right;color:#d7d8e3}
+.bar{height:9px;background:#ffffff20;border-radius:99px;overflow:hidden;margin-top:9px}.bar div{height:100%;width:0;background:linear-gradient(90deg,#d6b25c,#fff0b0);transition:.35s}
+.layout{display:grid;grid-template-columns:1.4fr .8fr;gap:16px;margin-top:16px}.stack{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
+.title{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:14px}.title h3{margin:0;font-size:18px}.muted{font:13px system-ui,sans-serif;color:var(--muted);line-height:1.45}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.tab{background:#f0f1f5;color:#525866;padding:8px 11px;border-radius:999px;font:700 12px system-ui,sans-serif}.tab.active{background:#29264c;color:#fff}
+.form{display:grid;grid-template-columns:1.5fr .7fr .8fr auto;gap:8px;margin-bottom:13px}
+input,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);outline:none;font-family:system-ui,sans-serif;font-size:14px}
+.btn{padding:10px 12px;border-radius:12px;border:0;font:750 13px system-ui,sans-serif}.primary{background:#302b5d;color:#fff}.secondary{background:#eceafa;color:#3d347a}.ghost{background:#f2f3f6;color:#4b5563}.danger{background:#fee5e5;color:#ad2929}
+.list{display:grid;gap:8px}.item{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid var(--line);border-radius:15px}
+.itemMain{flex:1;min-width:0}.itemMain b{display:block;font-size:14px}.itemMain small{font:12px system-ui,sans-serif;color:var(--muted)}
+.tag{font:800 12px system-ui,sans-serif;color:#4a3a9a;white-space:nowrap}.actions{display:flex;gap:5px}.actions .btn{padding:7px 9px}
+.empty{border:1px dashed #cbd1dc;border-radius:15px;padding:20px;text-align:center;color:var(--muted);font:13px system-ui,sans-serif}
+.ideas{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}.idea{display:flex;align-items:center;gap:8px;padding:9px;border:1px solid var(--line);border-radius:12px;margin-top:7px;background:#fafaff}
+.ideaText{flex:1;font:13px system-ui,sans-serif}.ideaXP{font:800 12px system-ui,sans-serif;color:#4a3a9a}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{padding:13px;background:#f8f8fb;border-radius:14px}.stat b{font-size:23px}.stat small{display:block;font:11px system-ui,sans-serif;color:var(--muted);margin-top:3px}
+.podium{display:grid;gap:8px}.houseRow{display:flex;align-items:center;gap:9px;padding:11px;border:1px solid var(--line);border-radius:14px}.houseRow strong{width:24px}.houseIcon{font-size:21px}.houseRow div:nth-child(3){flex:1}.housePoints{font:900 13px system-ui,sans-serif}
+.history{display:grid}.historyItem{display:flex;align-items:center;gap:9px;padding:10px 0;border-bottom:1px solid var(--line);font:13px system-ui,sans-serif}.historyItem:last-child{border:0}.hicon{width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:#f0effb}.htext{flex:1}.htext small{display:block;color:var(--muted);font-size:11px;margin-top:2px}.undo{background:#f0f1f4;color:#555d69;border-radius:9px;padding:7px;font-size:11px}
+.modalBack{display:none;position:fixed;inset:0;background:#11182788;z-index:20;align-items:center;justify-content:center;padding:16px}.modalBack.open{display:flex}.modal{width:min(500px,100%);background:#fff;border-radius:22px;padding:20px;box-shadow:0 30px 80px #0004}.modalHead{display:flex;justify-content:space-between;align-items:center}.modal h3{margin:0}.close{background:#f1f2f5;padding:8px 11px}.modal label{display:block;margin:12px 0 5px;font:750 12px system-ui,sans-serif}.modalGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sortNote{font:11px system-ui,sans-serif;color:var(--muted);margin-top:9px}
+.toast{position:fixed;bottom:23px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#161827;color:#fff;border-radius:999px;padding:11px 16px;font:700 13px system-ui,sans-serif;transition:.2s;z-index:30}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+footer{text-align:center;color:#6b7280;font:11px system-ui,sans-serif;margin-top:17px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.heroGrid{grid-template-columns:1fr}.form{grid-template-columns:1fr 90px}.form select{grid-column:1}.form button{grid-column:1/-1}}
+@media(max-width:470px){.app{padding:13px 10px 55px}.hero{padding:19px}.hero h2{font-size:24px}.item{align-items:flex-start}.actions{flex-wrap:wrap;justify-content:flex-end}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}.points{padding:9px 11px;font-size:13px}}
+</style>
+<style>
+button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+input,select,textarea{font-size:16px}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header>
+ <div class="brand">
+  <div class="crest">⚜</div>
+  <div><h1>Hogwarts · Lern-XP</h1><small>Deine persönliche Lernreise</small></div>
+ </div>
+ <div class="points">🏆 <span id="availableXP">0</span> HP</div>
+</header>
+
+<section class="hero">
+ <h2 id="welcome">Willkommen, Nova ✨</h2>
+ <p>Erledige deine Aufgaben, sammle Hauspunkte und bringe dein Haus im Hauspokal nach vorn.</p>
+
+ <div class="heroGrid">
+  <div>
+   <div class="label">DEIN HAUS</div>
+   <div class="houseName" id="myHouse">Noch nicht gewählt</div>
+  </div>
+
+  <div>
+   <div class="levelRow">
+    <div><div class="label">DEIN LEVEL</div><div class="level" id="level">1</div></div>
+    <div class="rank"><b id="rank">Erstklässler</b><br><span id="next">100 HP bis Level 2</span></div>
+   </div>
+   <div class="bar"><div id="levelBar"></div></div>
+  </div>
+ </div>
+</section>
+
+<div class="layout">
+<main class="stack">
+
+<section class="card">
+ <div class="title">
+  <div><h3>📜 Mein Tagesplan</h3><div class="muted">Hausaufgaben, Lernen und eigene Missionen – alles an einem Ort.</div></div>
+  <button type="button" class="btn secondary" id="addTaskTop">＋ Aufgabe</button>
+ </div>
+
+ <div class="tabs" id="subjectTabs"></div>
+ <div id="taskList"></div>
+</section>
+
+<section class="card">
+ <div class="title">
+  <div><h3>✨ Lernaktivitäten</h3><div class="muted">Hier kannst du zusätzliche Lernmissionen sammeln.</div></div>
+  <button type="button" class="btn secondary" id="showActivityIdeas">💡 Ideen anzeigen</button>
+ </div>
+
+ <div class="form">
+  <input id="activityName" placeholder="z. B. 20 Vokabeln wiederholen">
+  <input id="activityXP" type="number" min="1" max="100" value="5" title="Hauspunkte">
+  <select id="activitySubject"></select>
+  <button type="button" class="btn primary" id="addActivity">＋ Hinzufügen</button>
+ </div>
+
+ <div id="activityList"></div>
+ <div id="activityIdeas"></div>
+</section>
+
+<section class="card">
+ <div class="title">
+  <div><h3>🎁 Belohnungen</h3><div class="muted">Deine Hauspunkte kannst du gegen eigene Belohnungen eintauschen.</div></div>
+  <button type="button" class="btn secondary" id="showRewardIdeas">💡 Ideen anzeigen</button>
+ </div>
+
+ <div class="form">
+  <input id="rewardName" placeholder="z. B. Lieblingsfilm schauen">
+  <input id="rewardCost" type="number" min="1" max="10000" value="30">
+  <div></div>
+  <button type="button" class="btn primary" id="addReward">＋ Hinzufügen</button>
+ </div>
+
+ <div id="rewardList"></div>
+ <div id="rewardIdeas"></div>
+</section>
+
+<section class="card">
+ <div class="title"><div><h3>🕯 Verlauf</h3><div class="muted">Alle verdienten und ausgegebenen Hauspunkte.</div></div></div>
+ <div id="history"></div>
+</section>
+
+<section class="card" id="offlineLibrary" style="margin-top:18px">
+<h2>📖 Bibliothek – Karteikarten</h2>
+<p>Füge Lernnotizen ein. Am besten im Format <b>Begriff: Erklärung</b>. Die Erstellung läuft komplett offline.</p>
+<textarea id="libraryText" style="width:100%;min-height:150px;box-sizing:border-box;border-radius:12px;padding:12px"
+placeholder="Photosynthese: Prozess, bei dem Pflanzen Lichtenergie nutzen ..."></textarea>
+<div style="margin-top:10px"><button type="button" onclick="makeOfflineFlashcards()">✨ Karteikarten erstellen</button></div>
+<div id="flashcardOutput"></div>
+</section>
+</main>
+
+<aside class="stack">
+
+<section class="card">
+ <div class="title"><div><h3>🏆 Der Hauspokal</h3><div class="muted">Dein lokaler Wettbewerb.</div></div></div>
+ <div class="podium" id="cup"></div>
+ <div class="sortNote">Der Hauspokal ist in dieser Offline-Version nur für dieses Gerät. Einen echten gemeinsamen Online-Pokal können wir später ergänzen.</div>
+</section>
+
+<section class="card">
+ <div class="title"><div><h3>📊 Deine Stats</h3></div></div>
+ <div class="stats">
+  <div class="stat"><b id="done">0</b><small>Aufgaben geschafft</small></div>
+  <div class="stat"><b id="streak">0</b><small>Tage Streak</small></div>
+  <div class="stat"><b id="allEarned">0</b><small>HP verdient</small></div>
+ </div>
+</section>
+
+<section class="card">
+ <div class="title"><div><h3>🪄 Deine Fächer</h3><div class="muted">Deine sieben Hogwarts-Fächer.</div></div></div>
+ <div id="subjectSummary"></div>
+</section>
+
+<section class="card">
+ <div class="title"><div><h3>⚙️ Einstellungen</h3><div class="muted">Haus und Name kannst du jederzeit ändern.</div></div></div>
+ <button type="button" class="btn ghost" style="width:100%;margin-bottom:8px" id="changeHouse">🏰 Haus ändern</button>
+ <button type="button" class="btn ghost" style="width:100%" id="changeName">✒️ Name ändern</button>
+ <button type="button" class="btn danger" style="width:100%;margin-top:8px" id="clearData">Alles zurücksetzen</button>
+</section>
+
+</aside>
+</div>
+
+<footer>Komplett offline · Deine Daten bleiben auf diesem Gerät.</footer>
+</div>
+
+<div class="modalBack" id="modalBack">
+ <div class="modal">
+  <div class="modalHead"><h3 id="modalTitle">Neue Aufgabe</h3><button type="button" class="btn close" id="closeModal">×</button></div>
+  <label>Aufgabe</label>
+  <input id="modalName" placeholder="z. B. Hausaufgaben S. 84 Nr. 1–5">
+  <div class="modalGrid">
+   <div><label>Hauspunkte</label><input id="modalXP" type="number" min="1" max="100" value="5"></div>
+   <div><label>Fach</label><select id="modalSubject"></select></div>
+  </div>
+  <label>Art</label>
+  <select id="modalType">
+   <option value="Hausaufgabe">📜 Hausaufgabe</option>
+   <option value="Lernen">📖 Lernen</option>
+   <option value="Üben">🧠 Üben</option>
+   <option value="Prüfung">📝 Prüfungsvorbereitung</option>
+   <option value="Extra">⭐ Extra-Challenge</option>
+  </select>
+  <label>Fällig am (optional)</label>
+  <input id="modalDue" type="date">
+  <button type="button" class="btn primary" style="width:100%;margin-top:14px" id="saveModal">Speichern</button>
+ </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+
+const SUBJECTS=[
+  {id:"deutsch",name:"Deutsch",icon:"📚"},
+  {id:"englisch",name:"Englisch",icon:"🇬🇧"},
+  {id:"franzoesisch",name:"Französisch",icon:"🇫🇷"},
+  {id:"latein",name:"Latein",icon:"🏛️"},
+  {id:"mathe",name:"Mathematik",icon:"∑"},
+  {id:"bio",name:"Biologie",icon:"🧬"},
+  {id:"chemie",name:"Chemie",icon:"⚗️"},
+  {id:"geo",name:"Geografie",icon:"🌍"},
+  {id:"geschichte",name:"Geschichte",icon:"🏺"},
+  {id:"wipo",name:"WiPo",icon:"⚖️"},
+  {id:"sport",name:"Sport",icon:"🏃"},
+  {id:"kunst",name:"Kunst",icon:"🎨"},
+  {id:"musik",name:"Musik",icon:"🎵"},
+  {id:"religion",name:"Religion",icon:"✝️"}
+];
+
+const HOUSES=[
+ {id:"gryffindor",name:"Gryffindor",icon:"🦁"},
+ {id:"ravenclaw",name:"Ravenclaw",icon:"🦅"},
+ {id:"hufflepuff",name:"Hufflepuff",icon:"🦡"},
+ {id:"slytherin",name:"Slytherin",icon:"🐍"}
+];
+
+const activityIdeas=[
+ ["3 anspruchsvolle Matheaufgaben selbstständig lösen",7],
+ ["Eine Formel oder Regel aus dem Kopf erklären",3],
+ ["10 englische Vokabeln aktiv abrufen",3],
+ ["Einen kurzen englischen Text lesen und zusammenfassen",5],
+ ["10 französische Vokabeln aktiv abrufen",3],
+ ["5 eigene französische Sätze schreiben",5],
+ ["Ein Bio-Thema ohne Unterlagen in 5 Sätzen erklären",7],
+ ["Eine Geo-Grafik oder Karte selbst erklären",5],
+ ["Ein Wipo-Thema mit 3 Argumenten zusammenfassen",5],
+ ["Ein chemisches Prinzip aus dem Kopf erklären",7]
+];
+
+const rewardIdeas=[
+ ["Einen Film oder eine Folge schauen",30],
+ ["30 Minuten Lieblingsspiel",25],
+ ["30 Minuten Musik oder Podcast",15],
+ ["Einen Lieblingssnack genießen",15],
+ ["30 Minuten extra Freizeit",25]
+];
+
+let state=loadState();
+let activeSubject="alle";
+let modalMode="task";
+let editId=null;
+
+function defaultState(){
+ return {
+  name:"Nova",
+  house:null,
+  earned:0,
+  spent:0,
+  done:0,
+  streak:0,
+  lastActivityDay:null,
+  tasks:[],
+  activities:[],
+  rewards:[],
+  history:[],
+  housePoints:{
+   gryffindor:0,
+   ravenclaw:0,
+   hufflepuff:0,
+   slytherin:0
+  }
+ };
+}
+
+function loadState(){
+ try{
+  const s=JSON.parse(localStorage.getItem("hogwartsLernXP_v1"));
+  if(s&&Array.isArray(s.tasks)&&Array.isArray(s.activities)&&Array.isArray(s.rewards)&&Array.isArray(s.history)){
+   s.housePoints=s.housePoints||defaultState().housePoints;
+   return s;
+  }
+ }catch(e){}
+ return defaultState();
+}
+
+function saveState(){
+ localStorage.setItem("hogwartsLernXP_v1",JSON.stringify(state));
+}
+
+function esc(value){
+ return String(value).replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+function house(id){
+ return HOUSES.find(h=>h.id===id);
+}
+
+function subject(id){
+ return SUBJECTS.find(s=>s.id===id);
+}
+
+function toast(message){
+ const t=document.getElementById("toast");
+ t.textContent=message;
+ t.classList.add("show");
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>t.classList.remove("show"),1900);
+}
+
+function localDay(date=new Date()){
+  const y=date.getFullYear(), m=String(date.getMonth()+1).padStart(2,"0"), d=String(date.getDate()).padStart(2,"0");
+  return `${y}-${m}-${d}`;
+}
+
+function updateStreak(){
+ const current=localDay();
+
+ if(state.lastActivityDay===current)return;
+
+ if(!state.lastActivityDay){
+  state.streak=1;
+ }else{
+  const a=new Date(state.lastActivityDay);
+  const b=new Date(current);
+  const diff=Math.round((b-a)/86400000);
+  state.streak=diff===1?state.streak+1:1;
+ }
+
+ state.lastActivityDay=current;
+}
+
+function levelInfo(){
+ const level=Math.floor(state.earned/100)+1;
+ const inside=state.earned%100;
+ const ranks=[
+  "Erstklässler",
+  "Zweitklässler",
+  "Drittklässler",
+  "Viertklässler",
+  "Fünftklässler",
+  "Sechstklässler",
+  "Siebtklässler"
+ ];
+
+ return {
+  level,
+  inside,
+  rank:ranks[Math.min(ranks.length-1,level-1)]
+ };
+}
+
+function addHistory(kind,text,xp,ref){
+ state.history.unshift({
+  id:Date.now()+Math.random(),
+  kind,
+  text,
+  xp,
+  ref,
+  time:new Date().toISOString()
+ });
+ state.history=state.history.slice(0,50);
+}
+
+function completeTask(task){
+ if(task.completed)return;
+
+ task.completed=true;
+ state.earned+=task.xp;
+ state.done++;
+ updateStreak();
+
+ if(state.house){
+  state.housePoints[state.house]+=task.xp;
+ }
+
+ addHistory("earn",task.name,task.xp,task.id);
+
+ saveState();
+ render();
+ toast("✨ +"+task.xp+" Hauspunkte für "+(house(state.house)?.name||"dein Haus")+"!");
+}
+
+function completeActivity(activity){
+ if(activity.completed)return;
+
+ activity.completed=true;
+ state.earned+=activity.xp;
+ state.done++;
+ updateStreak();
+
+ if(state.house){
+  state.housePoints[state.house]+=activity.xp;
+ }
+
+ addHistory("earn",activity.name,activity.xp,activity.id);
+
+ saveState();
+ render();
+ toast("✨ +"+activity.xp+" Hauspunkte!");
+}
+
+function render(){
+ const l=levelInfo();
+ const available=Math.max(0,state.earned-state.spent);
+ const h=house(state.house);
+
+ document.getElementById("welcome").textContent="Willkommen, "+state.name+" ✨";
+ document.getElementById("availableXP").textContent=available;
+ document.getElementById("myHouse").textContent=h?h.icon+" "+h.name:"Noch nicht gewählt";
+ document.getElementById("level").textContent=l.level;
+ document.getElementById("rank").textContent=l.rank;
+ document.getElementById("next").textContent=(100-l.inside)+" HP bis Level "+(l.level+1);
+ document.getElementById("levelBar").style.width=l.inside+"%";
+
+ document.getElementById("done").textContent=state.done;
+ document.getElementById("streak").textContent=state.streak;
+ document.getElementById("allEarned").textContent=state.earned;
+
+ renderSubjectSelectors();
+ renderTasks();
+ renderActivities();
+ renderRewards();
+ renderHistory();
+ renderCup();
+ renderSubjectSummary();
+
+ saveState();
+}
+
+function renderSubjectSelectors(){
+ const tabs=document.getElementById("subjectTabs");
+
+ tabs.innerHTML=
+  `<button type="button" class="tab ${activeSubject==="alle"?"active":""}" data-subject-tab="alle">Alle</button>`+
+  SUBJECTS.map(s=>
+   `<button type="button" class="tab ${activeSubject===s.id?"active":""}" data-subject-tab="${s.id}">
+    ${s.icon} ${s.name}
+   </button>`
+  ).join("");
+
+ const options=SUBJECTS.map(s=>
+  `<option value="${s.id}">${s.name}</option>`
+ ).join("");
+
+ document.getElementById("activitySubject").innerHTML=options;
+ document.getElementById("modalSubject").innerHTML=options;
+}
+
+function renderTasks(){
+ const list=document.getElementById("taskList");
+
+ let tasks=state.tasks;
+
+ if(activeSubject!=="alle"){
+  tasks=tasks.filter(t=>t.subject===activeSubject);
+ }
+
+ if(!tasks.length){
+  list.innerHTML=`
+   <div class="empty">
+    ${activeSubject==="alle"
+     ?"Noch keine Aufgaben. Trag oben deine erste Hausaufgabe ein! 📜"
+     :"In diesem Fach gibt es noch keine Aufgaben."}
+   </div>
+  `;
+  return;
+ }
+
+ tasks=[...tasks].sort((a,b)=>{
+  if(a.completed!==b.completed)return a.completed?1:-1;
+  return (a.due||"9999-12-31").localeCompare(b.due||"9999-12-31");
+ });
+
+ list.innerHTML=`<div class="list">${
+  tasks.map(t=>{
+   const s=subject(t.subject);
+   const due=t.due
+    ?new Date(t.due+"T12:00:00").toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"})
+    :"";
+
+   return `
+    <div class="item" style="${t.completed?"opacity:.62":""}">
+     <div class="itemMain">
+      <b>${t.completed?"✓ ":""}${esc(t.name)}</b>
+      <small>${s?s.icon+" "+s.name:""} · ${esc(t.type)}${due?" · fällig "+due:""}</small>
+     </div>
+
+     <span class="tag">+${t.xp} HP</span>
+
+     <div class="actions">
+      <button type="button" class="btn primary" data-complete-task="${t.id}" ${t.completed?"disabled":""}>✓</button>
+      <button type="button" class="btn ghost" data-edit-task="${t.id}">✎</button>
+      <button type="button" class="btn danger" data-delete-task="${t.id}">×</button>
+     </div>
+    </div>
+   `;
+  }).join("")
+ }</div>`;
+}
+
+function renderActivities(){
+ const list=document.getElementById("activityList");
+
+ if(!state.activities.length){
+  list.innerHTML=`<div class="empty">Noch keine Lernaktivitäten. Du kannst sie oben selbst anlegen.</div>`;
+  return;
+ }
+
+ list.innerHTML=`<div class="list">${
+  state.activities.map(a=>{
+   const s=subject(a.subject);
+
+   return `
+    <div class="item" style="${a.completed?"opacity:.62":""}">
+     <div class="itemMain">
+      <b>${a.completed?"✓ ":""}${esc(a.name)}</b>
+      <small>${s?s.icon+" "+s.name:"Lernmission"}</small>
+     </div>
+     <span class="tag">+${a.xp} HP</span>
+     <div class="actions">
+      <button type="button" class="btn primary" data-complete-activity="${a.id}" ${a.completed?"disabled":""}>✓</button>
+      <button type="button" class="btn ghost" data-edit-activity="${a.id}">✎</button>
+      <button type="button" class="btn danger" data-delete-activity="${a.id}">×</button>
+     </div>
+    </div>
+   `;
+  }).join("")
+ }</div>`;
+}
+
+function renderRewards(){
+ const list=document.getElementById("rewardList");
+ const available=Math.max(0,state.earned-state.spent);
+
+ if(!state.rewards.length){
+  list.innerHTML=`<div class="empty">Noch keine Belohnungen. Leg fest, wofür du deine Hauspunkte ausgeben möchtest.</div>`;
+  return;
+ }
+
+ list.innerHTML=`<div class="list">${
+  state.rewards.map(r=>`
+   <div class="item">
+    <div class="itemMain">
+     <b>${esc(r.name)}</b>
+     <small>${r.cost} Hauspunkte</small>
+    </div>
+
+    <span class="tag">${r.cost} HP</span>
+
+    <div class="actions">
+     <button type="button" class="btn primary" data-redeem="${r.id}" ${available<r.cost?"disabled":""}>Einlösen</button>
+     <button type="button" class="btn ghost" data-edit-reward="${r.id}">✎</button>
+     <button type="button" class="btn danger" data-delete-reward="${r.id}">×</button>
+    </div>
+   </div>
+  `).join("")
+ }</div>`;
+}
+
+function renderHistory(){
+ const box=document.getElementById("history");
+
+ if(!state.history.length){
+  box.innerHTML=`<div class="empty">Noch keine Aktionen.</div>`;
+  return;
+ }
+
+ box.innerHTML=`<div class="history">${
+  state.history.map(e=>{
+   const date=new Date(e.time);
+   const time=date.toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"})
+    +" · "+
+    date.toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"});
+
+   const earn=e.kind==="earn";
+
+   return `
+    <div class="historyItem">
+     <div class="hicon">${earn?"⚡":"🎁"}</div>
+     <div class="htext">
+      <b>${earn?"+":"−"}${e.xp} HP</b> · ${esc(e.text)}
+      <small>${time}</small>
+     </div>
+     <button type="button" class="undo" data-undo="${e.id}">Rückgängig</button>
+    </div>
+   `;
+  }).join("")
+ }</div>`;
+}
+
+function renderCup(){
+ const sorted=[...HOUSES].sort(
+  (a,b)=>state.housePoints[b.id]-state.housePoints[a.id]
+ );
+
+ document.getElementById("cup").innerHTML=sorted.map((h,i)=>`
+  <div class="houseRow" ${state.house===h.id?'style="border-color:#c99a35;background:#fffaf0"':""}>
+   <strong>${i+1}.</strong>
+   <span class="houseIcon">${h.icon}</span>
+   <div><b>${h.name}</b>${state.house===h.id?'<small style="display:block;color:#a07420;font:11px system-ui">Dein Haus</small>':""}</div>
+   <span class="housePoints">${state.housePoints[h.id]} HP</span>
+  </div>
+ `).join("");
+}
+
+function renderSubjectSummary(){
+ document.getElementById("subjectSummary").innerHTML=`
+  <div class="list">
+   ${SUBJECTS.map(s=>{
+    const open=state.tasks.filter(t=>t.subject===s.id&&!t.completed).length;
+    const done=state.tasks.filter(t=>t.subject===s.id&&t.completed).length;
+    return `
+     <div class="item" style="padding:9px 10px">
+      <span style="font-size:20px">${s.icon}</span>
+      <div class="itemMain"><b>${s.name}</b><small>${open} offen · ${done} geschafft</small></div>
+     </div>
+    `;
+   }).join("")}
+  </div>
+ `;
+}
+
+function showActivityIdeas(){
+ document.getElementById("activityIdeas").innerHTML=`
+  <div class="ideas">
+   <b>💡 Ideen für die 10. Klasse</b>
+   <div class="muted">Übernimm nur, was gerade zu deinem Stoff passt.</div>
+   ${activityIdeas.map((x,i)=>`
+    <div class="idea">
+     <span class="ideaText">${esc(x[0])}</span>
+     <span class="ideaXP">+${x[1]} HP</span>
+     <button type="button" class="btn secondary" data-idea-a="${i}">Übernehmen</button>
+    </div>
+   `).join("")}
+  </div>
+ `;
+}
+
+function showRewardIdeas(){
+ document.getElementById("rewardIdeas").innerHTML=`
+  <div class="ideas">
+   <b>💡 Belohnungs-Ideen</b>
+   <div class="muted">Du kannst die Kosten später ändern.</div>
+   ${rewardIdeas.map((x,i)=>`
+    <div class="idea">
+     <span class="ideaText">${esc(x[0])}</span>
+     <span class="ideaXP">${x[1]} HP</span>
+     <button type="button" class="btn secondary" data-idea-r="${i}">Übernehmen</button>
+    </div>
+   `).join("")}
+  </div>
+ `;
+}
+
+function openTaskModal(id=null){
+ modalMode="task";
+ editId=id;
+
+ document.getElementById("modalTitle").textContent=
+  id?"Aufgabe bearbeiten":"Neue Aufgabe";
+
+ const task=id?state.tasks.find(t=>String(t.id)===String(id)):null;
+
+ document.getElementById("modalName").value=task?task.name:"";
+ document.getElementById("modalXP").value=task?task.xp:5;
+ document.getElementById("modalSubject").value=task?task.subject:(activeSubject==="alle"?"mathe":activeSubject);
+ document.getElementById("modalType").value=task?task.type:"Hausaufgabe";
+ document.getElementById("modalDue").value=task?task.due||"":"";
+
+ document.getElementById("modalBack").classList.add("open");
+}
+
+function openActivityModal(id){
+ modalMode="activity";
+ editId=id;
+
+ const a=state.activities.find(x=>String(x.id)===String(id));
+ if(!a)return;
+
+ document.getElementById("modalTitle").textContent="Lernaktivität bearbeiten";
+ document.getElementById("modalName").value=a.name;
+ document.getElementById("modalXP").value=a.xp;
+ document.getElementById("modalSubject").value=a.subject;
+ document.getElementById("modalType").value="Lernen";
+ document.getElementById("modalDue").value="";
+
+ document.getElementById("modalBack").classList.add("open");
+}
+
+function openRewardModal(id){
+ modalMode="reward";
+ editId=id;
+
+ const r=state.rewards.find(x=>String(x.id)===String(id));
+ if(!r)return;
+
+ document.getElementById("modalTitle").textContent="Belohnung bearbeiten";
+ document.getElementById("modalName").value=r.name;
+ document.getElementById("modalXP").value=r.cost;
+ document.getElementById("modalSubject").value="mathe";
+ document.getElementById("modalType").value="Lernen";
+ document.getElementById("modalDue").value="";
+
+ document.getElementById("modalBack").classList.add("open");
+}
+
+function closeModal(){
+ document.getElementById("modalBack").classList.remove("open");
+}
+
+document.getElementById("addTaskTop").onclick=()=>openTaskModal();
+document.getElementById("closeModal").onclick=closeModal;
+
+document.getElementById("modalBack").onclick=e=>{
+ if(e.target.id==="modalBack")closeModal();
+};
+
+document.getElementById("saveModal").onclick=()=>{
+ const name=document.getElementById("modalName").value.trim();
+ const xp=Math.max(1,Number(document.getElementById("modalXP").value)||1);
+
+ if(!name){
+  toast("Gib zuerst einen Namen ein.");
+  return;
+ }
+
+ if(modalMode==="task"){
+  const data={
+   name,
+   xp,
+   subject:document.getElementById("modalSubject").value,
+   type:document.getElementById("modalType").value,
+   due:document.getElementById("modalDue").value
+  };
+
+  if(editId){
+   const task=state.tasks.find(t=>String(t.id)===String(editId));
+   Object.assign(task,data);
+  }else{
+   state.tasks.push({
+    id:Date.now()+Math.random(),
+    ...data,
+    completed:false
+   });
+  }
+ }else if(modalMode==="activity"){
+  const a=state.activities.find(x=>String(x.id)===String(editId));
+  Object.assign(a,{
+   name,
+   xp,
+   subject:document.getElementById("modalSubject").value
+  });
+ }else{
+  const r=state.rewards.find(x=>String(x.id)===String(editId));
+  r.name=name;
+  r.cost=xp;
+ }
+
+ closeModal();
+ saveState();
+ render();
+ toast("Gespeichert ✓");
+};
+
+document.getElementById("addActivity").onclick=()=>{
+ const name=document.getElementById("activityName").value.trim();
+ const xp=Math.max(1,Number(document.getElementById("activityXP").value)||1);
+
+ if(!name){
+  toast("Gib zuerst eine Aktivität ein.");
+  return;
+ }
+
+ state.activities.push({
+  id:Date.now()+Math.random(),
+  name,
+  xp,
+  subject:document.getElementById("activitySubject").value,
+  completed:false
+ });
+
+ document.getElementById("activityName").value="";
+ saveState();
+ render();
+ toast("Lernaktivität hinzugefügt ✨");
+};
+
+document.getElementById("addReward").onclick=()=>{
+ const name=document.getElementById("rewardName").value.trim();
+ const cost=Math.max(1,Number(document.getElementById("rewardCost").value)||1);
+
+ if(!name){
+  toast("Gib zuerst eine Belohnung ein.");
+  return;
+ }
+
+ state.rewards.push({
+  id:Date.now()+Math.random(),
+  name,
+  cost
+ });
+
+ document.getElementById("rewardName").value="";
+ saveState();
+ render();
+ toast("Belohnung hinzugefügt 🎁");
+};
+
+document.getElementById("showActivityIdeas").onclick=showActivityIdeas;
+document.getElementById("showRewardIdeas").onclick=showRewardIdeas;
+
+document.addEventListener("click",event=>{
+ const b=event.target.closest("button");
+ if(!b)return;
+
+ if(b.dataset.subjectTab){
+  activeSubject=b.dataset.subjectTab;
+  render();
+  return;
+ }
+
+ if(b.dataset.completeTask){
+  const t=state.tasks.find(x=>String(x.id)===b.dataset.completeTask);
+  if(t)completeTask(t);
+  return;
+ }
+
+ if(b.dataset.completeActivity){
+  const a=state.activities.find(x=>String(x.id)===b.dataset.completeActivity);
+  if(a)completeActivity(a);
+  return;
+ }
+
+ if(b.dataset.editTask){
+  openTaskModal(b.dataset.editTask);
+  return;
+ }
+
+ if(b.dataset.deleteTask){
+  if(confirm("Diese Aufgabe löschen?")){
+   state.tasks=state.tasks.filter(x=>String(x.id)!==b.dataset.deleteTask);
+   saveState();render();
+  }
+  return;
+ }
+
+ if(b.dataset.editActivity){
+  openActivityModal(b.dataset.editActivity);
+  return;
+ }
+
+ if(b.dataset.deleteActivity){
+  if(confirm("Diese Lernaktivität löschen?")){
+   state.activities=state.activities.filter(x=>String(x.id)!==b.dataset.deleteActivity);
+   saveState();render();
+  }
+  return;
+ }
+
+ if(b.dataset.editReward){
+  openRewardModal(b.dataset.editReward);
+  return;
+ }
+
+ if(b.dataset.deleteReward){
+  if(confirm("Diese Belohnung löschen?")){
+   state.rewards=state.rewards.filter(x=>String(x.id)!==b.dataset.deleteReward);
+   saveState();render();
+  }
+  return;
+ }
+
+ if(b.dataset.redeem){
+  const r=state.rewards.find(x=>String(x.id)===b.dataset.redeem);
+  if(!r)return;
+
+  const available=state.earned-state.spent;
+
+  if(available<r.cost){
+   toast("Dafür fehlen dir noch "+(r.cost-available)+" HP.");
+   return;
+  }
+
+  state.spent+=r.cost;
+
+  addHistory("spend",r.name,r.cost,r.id);
+
+  saveState();
+  render();
+  toast("🎁 Belohnung eingelöst!");
+  return;
+ }
+
+ if(b.dataset.ideaA){
+  const idea=activityIdeas[Number(b.dataset.ideaA)];
+
+  state.activities.push({
+   id:Date.now()+Math.random(),
+   name:idea[0],
+   xp:idea[1],
+   subject:inferSubject(idea[0]),
+   completed:false
+  });
+
+  saveState();
+  render();
+  showActivityIdeas();
+  toast("Idee übernommen ✨");
+  return;
+ }
+
+ if(b.dataset.ideaR){
+  const idea=rewardIdeas[Number(b.dataset.ideaR)];
+
+  state.rewards.push({
+   id:Date.now()+Math.random(),
+   name:idea[0],
+   cost:idea[1]
+  });
+
+  saveState();
+  render();
+  showRewardIdeas();
+  toast("Belohnung übernommen 🎁");
+  return;
+ }
+
+ if(b.dataset.undo){
+  undoEntry(b.dataset.undo);
+ }
+});
+
+function inferSubject(text){
+ const lower=text.toLowerCase();
+
+ if(lower.includes("mathe")||lower.includes("formel")||lower.includes("aufgaben"))
+  return "mathe";
+ if(lower.includes("englisch")||lower.includes("englische"))
+  return "englisch";
+ if(lower.includes("französ")||lower.includes("französische"))
+  return "franzoesisch";
+ if(lower.includes("bio"))
+  return "bio";
+ if(lower.includes("geo")||lower.includes("karte"))
+  return "geo";
+ if(lower.includes("wipo"))
+  return "wipo";
+ if(lower.includes("chem"))
+  return "chemie";
+
+ return "mathe";
+}
+
+function undoEntry(id){
+ const index=state.history.findIndex(x=>String(x.id)===String(id));
+ if(index<0)return;
+
+ const entry=state.history[index];
+
+ if(entry.kind==="earn"){
+  state.earned=Math.max(0,state.earned-entry.xp);
+  state.done=Math.max(0,state.done-1);
+
+  if(state.house){
+   state.housePoints[state.house]=Math.max(
+    0,
+    state.housePoints[state.house]-entry.xp
+   );
+  }
+
+  const task=state.tasks.find(x=>String(x.id)===String(entry.ref));
+  const activity=state.activities.find(x=>String(x.id)===String(entry.ref));
+
+  if(task)task.completed=false;
+  if(activity)activity.completed=false;
+ }else{
+  state.spent=Math.max(0,state.spent-entry.xp);
+ }
+
+ state.history.splice(index,1);
+
+ saveState();
+ render();
+ toast("Aktion rückgängig gemacht");
+}
+
+document.getElementById("changeHouse").onclick=()=>{
+ chooseHouse(true);
+};
+
+document.getElementById("changeName").onclick=()=>{
+ const name=prompt("Wie soll die App dich nennen?",state.name);
+
+ if(name&&name.trim()){
+  state.name=name.trim();
+  saveState();
+  render();
+ }
+};
+
+document.getElementById("clearData").onclick=()=>{
+ if(confirm("Wirklich alles löschen? Aufgaben, Belohnungen, Punkte und Haus werden entfernt.")){
+  localStorage.removeItem("hogwartsLernXP_v1");
+  state=defaultState();
+  activeSubject="alle";
+  saveState();
+  render();
+  chooseHouse(false);
+ }
+};
+
+function chooseHouse(force){
+ const current=house(state.house);
+
+ const options=HOUSES.map((h,i)=>
+  `${i+1}. ${h.icon} ${h.name}`
+ ).join("\n");
+
+ const answer=prompt(
+  "🏰 Der Sprechende Hut\n\nWelches Haus soll dich aufnehmen?\n\n"+
+  options+
+  "\n\nSchreibe 1, 2, 3 oder 4."
+ );
+
+ const index=Number(answer)-1;
+
+ if(index>=0&&index<HOUSES.length){
+  state.house=HOUSES[index].id;
+  saveState();
+  render();
+  toast("🏰 Willkommen in "+HOUSES[index].name+"!");
+ }else if(!current&&!force){
+  setTimeout(()=>chooseHouse(false),100);
+ }
+}
+
+render();
+
+if(!state.house){
+ setTimeout(()=>chooseHouse(false),300);
+}
+
+function makeOfflineFlashcards(){
+  const input=document.getElementById("libraryText"), out=document.getElementById("flashcardOutput");
+  if(!input||!out)return;
+  const text=input.value.trim();
+  if(!text){out.innerHTML="<p>Bitte füge zuerst Lernmaterial ein.</p>";return;}
+  const cards=[];
+  for(const line of text.split(/\n+/).map(x=>x.trim()).filter(Boolean)){
+    const m=line.match(/^(.{2,90}?)\s*[:–—-]\s*(.{3,250})$/);
+    if(m) cards.push({q:m[1],a:m[2]});
+  }
+  if(!cards.length){
+    for(const s of text.split(/(?<=[.!?])\s+/).filter(x=>x.length>30).slice(0,20))
+      cards.push({q:"Was ist die wichtigste Aussage?",a:s});
+  }
+  out.innerHTML="<div style='margin-top:14px'><b>✨ "+cards.length+" Karte(n) erstellt</b></div>";
+  cards.slice(0,30).forEach((c,i)=>{
+    const el=document.createElement("div");
+    el.style.cssText="margin-top:10px;padding:14px;border-radius:14px;background:rgba(255,255,255,.7);border:1px solid rgba(80,60,40,.12)";
+    el.innerHTML="<b>Karte "+(i+1)+":</b><div>"+esc(c.q)+"</div><hr><b>Antwort:</b> "+esc(c.a);
+    out.appendChild(el);
+  });
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}
+
+</script>
+</body>
+</html>
