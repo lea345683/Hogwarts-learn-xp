@@ -1,0 +1,1642 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<title>Hogwarts Lern-XP – iPad</title>
+<style>
+:root{
+ --bg:#f3f4f7;--card:#fff;--ink:#172033;--muted:#6b7280;--line:#e4e7ec;
+ --gold:#c99a35;--purple:#5b3aa8;--green:#16845b;--red:#c73a3a;
+ --shadow:0 12px 32px rgba(18,25,40,.09);--radius:20px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#111827 0,#25233c 210px,#f3f4f7 430px);color:var(--ink);
+font-family:Georgia,"Times New Roman",serif}
+button,input,select{font:inherit}button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.45}
+.app{max-width:1150px;margin:auto;padding:18px 16px 70px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#fff;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:12px}.crest{width:48px;height:48px;border:1px solid #ffffff33;border-radius:14px;
+display:grid;place-items:center;background:#ffffff10;font-size:25px}.brand h1{margin:0;font-size:22px}.brand small{color:#cfd3df;font-family:system-ui,sans-serif}
+.points{background:#fff;color:#312e55;border-radius:999px;padding:10px 15px;font-weight:900;box-shadow:var(--shadow);white-space:nowrap}
+.hero{color:#fff;background:linear-gradient(135deg,#191827,#312e55);border:1px solid #ffffff12;border-radius:24px;padding:24px;box-shadow:0 20px 45px #0003;position:relative;overflow:hidden}
+.hero:after{content:"✦";position:absolute;right:25px;top:12px;color:#ffffff20;font-size:90px}
+.hero h2{margin:0 0 6px;font-size:29px}.hero p{margin:0;color:#d9d8e4;font-family:system-ui,sans-serif;font-size:14px}
+.heroGrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}.houseName{font-size:30px;font-weight:900}.label{font:700 11px system-ui,sans-serif;letter-spacing:1px;color:#bfc2cf}
+.levelRow{display:flex;justify-content:space-between;align-items:end}.level{font-size:34px;font-weight:900}.rank{font-family:system-ui,sans-serif;font-size:13px;text-align:right;color:#d7d8e3}
+.bar{height:9px;background:#ffffff20;border-radius:99px;overflow:hidden;margin-top:9px}.bar div{height:100%;width:0;background:linear-gradient(90deg,#d6b25c,#fff0b0);transition:.35s}
+.layout{display:grid;grid-template-columns:1.4fr .8fr;gap:16px;margin-top:16px}.stack{display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
+.title{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:14px}.title h3{margin:0;font-size:18px}.muted{font:13px system-ui,sans-serif;color:var(--muted);line-height:1.45}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.tab{background:#f0f1f5;color:#525866;padding:8px 11px;border-radius:999px;font:700 12px system-ui,sans-serif}.tab.active{background:#29264c;color:#fff}
+.form{display:grid;grid-template-columns:1.5fr .7fr .8fr auto;gap:8px;margin-bottom:13px}
+input,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);outline:none;font-family:system-ui,sans-serif;font-size:14px}
+.btn{padding:10px 12px;border-radius:12px;border:0;font:750 13px system-ui,sans-serif}.primary{background:#302b5d;color:#fff}.secondary{background:#eceafa;color:#3d347a}.ghost{background:#f2f3f6;color:#4b5563}.danger{background:#fee5e5;color:#ad2929}
+.list{display:grid;gap:8px}.item{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid var(--line);border-radius:15px}
+.itemMain{flex:1;min-width:0}.itemMain b{display:block;font-size:14px}.itemMain small{font:12px system-ui,sans-serif;color:var(--muted)}
+.tag{font:800 12px system-ui,sans-serif;color:#4a3a9a;white-space:nowrap}.actions{display:flex;gap:5px}.actions .btn{padding:7px 9px}
+.empty{border:1px dashed #cbd1dc;border-radius:15px;padding:20px;text-align:center;color:var(--muted);font:13px system-ui,sans-serif}
+.ideas{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}.idea{display:flex;align-items:center;gap:8px;padding:9px;border:1px solid var(--line);border-radius:12px;margin-top:7px;background:#fafaff}
+.ideaText{flex:1;font:13px system-ui,sans-serif}.ideaXP{font:800 12px system-ui,sans-serif;color:#4a3a9a}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{padding:13px;background:#f8f8fb;border-radius:14px}.stat b{font-size:23px}.stat small{display:block;font:11px system-ui,sans-serif;color:var(--muted);margin-top:3px}
+.podium{display:grid;gap:8px}.houseRow{display:flex;align-items:center;gap:9px;padding:11px;border:1px solid var(--line);border-radius:14px}.houseRow strong{width:24px}.houseIcon{font-size:21px}.houseRow div:nth-child(3){flex:1}.housePoints{font:900 13px system-ui,sans-serif}
+.history{display:grid}.historyItem{display:flex;align-items:center;gap:9px;padding:10px 0;border-bottom:1px solid var(--line);font:13px system-ui,sans-serif}.historyItem:last-child{border:0}.hicon{width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:#f0effb}.htext{flex:1}.htext small{display:block;color:var(--muted);font-size:11px;margin-top:2px}.undo{background:#f0f1f4;color:#555d69;border-radius:9px;padding:7px;font-size:11px}
+.modalBack{display:none;position:fixed;inset:0;background:#11182788;z-index:20;align-items:center;justify-content:center;padding:16px}.modalBack.open{display:flex}.modal{width:min(500px,100%);background:#fff;border-radius:22px;padding:20px;box-shadow:0 30px 80px #0004}.modalHead{display:flex;justify-content:space-between;align-items:center}.modal h3{margin:0}.close{background:#f1f2f5;padding:8px 11px}.modal label{display:block;margin:12px 0 5px;font:750 12px system-ui,sans-serif}.modalGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sortNote{font:11px system-ui,sans-serif;color:var(--muted);margin-top:9px}
+.toast{position:fixed;bottom:23px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#161827;color:#fff;border-radius:999px;padding:11px 16px;font:700 13px system-ui,sans-serif;transition:.2s;z-index:30}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+footer{text-align:center;color:#6b7280;font:11px system-ui,sans-serif;margin-top:17px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.heroGrid{grid-template-columns:1fr}.form{grid-template-columns:1fr 90px}.form select{grid-column:1}.form button{grid-column:1/-1}}
+@media(max-width:470px){.app{padding:13px 10px 55px}.hero{padding:19px}.hero h2{font-size:24px}.item{align-items:flex-start}.actions{flex-wrap:wrap;justify-content:flex-end}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}.points{padding:9px 11px;font-size:13px}}
+</style>
+<style>
+button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+input,select,textarea{font-size:16px}
+
+/* V3 overview pages */
+.pageNav{display:flex;gap:8px;overflow-x:auto;padding:14px 0 4px;scrollbar-width:none}
+.pageNav::-webkit-scrollbar{display:none}
+.pageNav button{flex:0 0 auto}
+.page{display:none;margin-top:12px}
+.page.active{display:block}
+.pageIntro{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+.pageIntro h2{margin:0 0 4px;font-size:24px}
+.weekControls{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.weekLabel{font-weight:900;text-align:center;flex:1}
+.scrollX{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.weekGrid{display:grid;grid-template-columns:repeat(7,minmax(135px,1fr));min-width:980px;gap:8px}
+.dayCol{border:1px solid var(--line);border-radius:16px;background:#fbfbfd;min-height:260px;overflow:hidden}
+.dayHead{padding:11px 10px;border-bottom:1px solid var(--line);background:#f4f2fb}
+.dayHead b{display:block}
+.dayHead small{font:11px system-ui,sans-serif;color:var(--muted)}
+.dayEntries{padding:8px;display:grid;gap:7px}
+.planEntry{position:relative;padding:9px 9px 9px 11px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.planEntry.test{border-left:5px solid #b53636;background:#fff7f7}
+.planEntry.learn{border-left:5px solid #5b3aa8}
+.planEntry.homework{border-left:5px solid #16845b}
+.planEntry.sport{border-left:5px solid #3e7aa6}
+.planEntry.free{border-left:5px solid #c99a35}
+.planEntry.other{border-left:5px solid #7b8190}
+.planEntry b{display:block;font-size:13px;padding-right:22px}
+.planEntry small{display:block;font:11px system-ui,sans-serif;color:var(--muted);margin-top:3px}
+.entryDelete{position:absolute;right:5px;top:5px;border:0;background:#f1f2f5;border-radius:8px;padding:4px 6px;font:700 11px system-ui,sans-serif}
+.dayAdd{width:100%;margin-top:8px;background:#f0effb;color:#44367e;border:1px dashed #bdb6df;border-radius:10px;padding:8px;font:800 12px system-ui,sans-serif}
+.timetable{display:grid;grid-template-columns:70px repeat(5,minmax(145px,1fr));min-width:800px;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.ttCell{background:#fff;min-height:62px;padding:7px}
+.ttHead{background:#f4f2fb;font-weight:900;text-align:center}
+.ttPeriod{background:#f8f8fb;font-weight:900;text-align:center;display:grid;place-items:center}
+.ttSubject{width:100%;height:100%;min-height:48px;border:1px solid transparent;border-radius:10px;background:#fafaff;text-align:left;padding:7px;font:700 12px system-ui,sans-serif}
+.ttSubject.filled{background:#f1effb;border-color:#ddd8f0}
+.ttSubject small{display:block;color:var(--muted);font-weight:600;margin-top:2px}
+.habitGrid{display:grid;grid-template-columns:minmax(190px,1fr) repeat(7,72px);min-width:720px;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.hCell{background:#fff;min-height:54px;padding:7px;display:grid;place-items:center;text-align:center}
+.hHead{background:#f4f2fb;font:800 11px system-ui,sans-serif}
+.hName{display:block;text-align:left}
+.hName b{display:block;font-size:13px}
+.hName small{font:11px system-ui,sans-serif;color:var(--muted)}
+.hCheck{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:#f7f7f9;font-size:20px}
+.hCheck.done{background:#eaf7f0;border-color:#b8dfc9}
+.hCheck.excused{background:#fff8e8;border-color:#ead39b}
+.habitActions{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}
+.habitStats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.habitStat{background:#f8f8fb;border-radius:14px;padding:10px}
+.habitStat b{font-size:18px}.habitStat small{display:block;font:10px system-ui,sans-serif;color:var(--muted)}
+.topicCard{background:linear-gradient(135deg,#fffdf5,#f6f2ff);border:1px solid #e4dfc9;border-radius:20px;padding:20px}
+.topicIcon{font-size:42px}.topicCard h3{font-size:25px;margin:8px 0}.topicCard p{font:14px system-ui,sans-serif;line-height:1.55;color:#505565}
+.topicQuestion{padding:11px;border-radius:12px;background:#ffffffaa;border:1px solid #e5e0ee;font:13px system-ui,sans-serif;margin-top:8px}
+.badgeTest{display:inline-block;background:#fee5e5;color:#a52c2c;border-radius:999px;padding:3px 7px;font:800 10px system-ui,sans-serif}
+@media(max-width:700px){
+ .pageIntro{flex-direction:column}
+ .habitStats{grid-template-columns:1fr 1fr}
+}
+
+</style>
+</head>
+<body>
+<div class="app">
+
+<header>
+ <div class="brand">
+  <div class="crest">⚜</div>
+  <div><h1>Hogwarts · Lern-XP</h1><small>Deine persönliche Lernreise</small></div>
+ </div>
+ <div class="points">🏆 <span id="availableXP">0</span> HP</div>
+</header>
+
+<section class="hero">
+ <h2 id="welcome">Willkommen, Nova ✨</h2>
+ <p>Erledige deine Aufgaben, sammle Hauspunkte und bringe dein Haus im Hauspokal nach vorn.</p>
+
+ <div class="heroGrid">
+  <div>
+   <div class="label">DEIN HAUS</div>
+   <div class="houseName" id="myHouse">Noch nicht gewählt</div>
+  </div>
+
+  <div>
+   <div class="levelRow">
+    <div><div class="label">DEIN LEVEL</div><div class="level" id="level">1</div></div>
+    <div class="rank"><b id="rank">Erstklässler</b><br><span id="next">100 HP bis Level 2</span></div>
+   </div>
+   <div class="bar"><div id="levelBar"></div></div>
+  </div>
+ </div>
+</section>
+
+
+<nav class="pageNav" aria-label="Hogwarts Bereiche">
+  <button type="button" class="btn primary pageBtn" data-page="dashboard">🏰 Dashboard</button>
+  <button type="button" class="btn ghost pageBtn" data-page="timetable">🏫 Stundenplan</button>
+  <button type="button" class="btn ghost pageBtn" data-page="week">🗓️ Wochenplan</button>
+  <button type="button" class="btn ghost pageBtn" data-page="habits">🔥 Habits</button>
+  <button type="button" class="btn ghost pageBtn" data-page="topic">🦉 Thema des Tages</button>
+</nav>
+
+<section class="page" id="page-timetable">
+  <div class="card">
+    <div class="pageIntro">
+      <div>
+        <h2>🏫 Mein Stundenplan</h2>
+        <div class="muted">Dein fester Stundenplan. Einmal eintragen – danach bleibt er gespeichert.</div>
+      </div>
+      <button type="button" class="btn secondary" id="clearTimetable">↺ Leeren</button>
+    </div>
+    <div class="muted" style="margin-bottom:12px">Klicke auf ein Feld und wähle das Fach für diese Stunde. Die 14 Fächer stehen vollständig zur Auswahl.</div>
+    <div class="scrollX"><div class="timetable" id="timetableGrid"></div></div>
+  </div>
+</section>
+
+<section class="page" id="page-week">
+  <div class="card">
+    <div class="pageIntro">
+      <div>
+        <h2>🗓️ Wochenplan</h2>
+        <div class="muted">Nur für diese konkrete Woche: Arbeiten, Lernen, Hausaufgaben, Training, Freizeit und Sonstiges.</div>
+      </div>
+      <button type="button" class="btn secondary" id="addWeekEntryTop">＋ Eintrag</button>
+    </div>
+    <div class="weekControls">
+      <button type="button" class="btn ghost" id="prevWeek">‹</button>
+      <div class="weekLabel" id="weekLabel"></div>
+      <button type="button" class="btn ghost" id="nextWeek">›</button>
+    </div>
+    <div class="scrollX"><div class="weekGrid" id="weekGrid"></div></div>
+  </div>
+</section>
+
+<section class="page" id="page-habits">
+  <div class="card">
+    <div class="pageIntro">
+      <div>
+        <h2>🔥 Mein Habit-Tracker</h2>
+        <div class="muted">Eine echte Wochenübersicht: Gewohnheiten als Zeilen, Montag bis Sonntag als Spalten.</div>
+      </div>
+      <button type="button" class="btn secondary" id="addHabit">＋ Habit</button>
+    </div>
+    <div class="muted">✓ = erledigt und bringt HP. Ein nicht erledigtes Habit wird nach Tagesende einmal mit seiner eingestellten Strafe belastet. Über „Ausnahme“ kannst du unvermeidbare Tage markieren.</div>
+    <div class="scrollX" style="margin-top:14px"><div class="habitGrid" id="habitGrid"></div></div>
+    <div class="habitStats" id="habitStats"></div>
+  </div>
+</section>
+
+<section class="page" id="page-topic">
+  <div class="card">
+    <div class="pageIntro">
+      <div>
+        <h2>🦉 Thema des Tages</h2>
+        <div class="muted">Jeden Tag eine kleine Entdeckungsreise – unabhängig davon, ob es ein Schulfach ist.</div>
+      </div>
+    </div>
+    <div id="topicContent"></div>
+  </div>
+</section>
+
+<!-- modal for weekly planner entries -->
+<div class="modalBack" id="plannerModalBack">
+  <div class="modal">
+    <div class="modalHead"><h3 id="plannerModalTitle">Neuer Wochenplan-Eintrag</h3><button type="button" class="btn ghost close" id="closePlannerModal">×</button></div>
+    <label>Titel</label>
+    <input id="plannerName" placeholder="z. B. Mathe lernen">
+    <div class="modalGrid">
+      <div><label>Tag</label><select id="plannerDay"></select></div>
+      <div><label>Uhrzeit (optional)</label><input id="plannerTime" type="time"></div>
+    </div>
+    <label>Kategorie</label>
+    <select id="plannerCategory">
+      <option value="test">📝 Arbeit/Klausur</option>
+      <option value="learn">📚 Lernen</option>
+      <option value="homework">📖 Hausaufgaben</option>
+      <option value="sport">🏐 Training</option>
+      <option value="free">🎨 Freizeit</option>
+      <option value="other">📌 Sonstiges</option>
+    </select>
+    <label>Fach (optional)</label>
+    <select id="plannerSubject"></select>
+    <button type="button" class="btn primary" style="width:100%;margin-top:14px" id="savePlannerEntry">Speichern</button>
+  </div>
+</div>
+
+<!-- modal for habits -->
+<div class="modalBack" id="habitModalBack">
+  <div class="modal">
+    <div class="modalHead"><h3 id="habitModalTitle">Neues Habit</h3><button type="button" class="btn ghost close" id="closeHabitModal">×</button></div>
+    <label>Habit</label>
+    <input id="habitName" placeholder="z. B. Schultasche für morgen packen">
+    <div class="modalGrid">
+      <div><label>Belohnung</label><input id="habitReward" type="number" min="0" max="100" value="3"></div>
+      <div><label>Strafe bei Verpassen</label><input id="habitPenalty" type="number" min="0" max="100" value="2"></div>
+    </div>
+    <div class="muted" style="margin-top:9px">Die Strafe wird erst nach Tagesende verbucht – nicht schon beim Öffnen der App.</div>
+    <button type="button" class="btn primary" style="width:100%;margin-top:14px" id="saveHabit">Speichern</button>
+  </div>
+</div>
+
+<div class="page active" id="page-dashboard"><div class="layout">
+<main class="stack">
+
+<section class="card">
+ <div class="title">
+  <div><h3>📜 Mein Tagesplan</h3><div class="muted">Hausaufgaben, Lernen und eigene Missionen – alles an einem Ort.</div></div>
+  <button type="button" class="btn secondary" id="addTaskTop">＋ Aufgabe</button>
+ </div>
+
+ <div class="tabs" id="subjectTabs"></div>
+ <div id="taskList"></div>
+</section>
+
+<section class="card">
+ <div class="title">
+  <div><h3>✨ Lernaktivitäten</h3><div class="muted">Hier kannst du zusätzliche Lernmissionen sammeln.</div></div>
+  <button type="button" class="btn secondary" id="showActivityIdeas">💡 Ideen anzeigen</button>
+ </div>
+
+ <div class="form">
+  <input id="activityName" placeholder="z. B. 20 Vokabeln wiederholen">
+  <input id="activityXP" type="number" min="1" max="100" value="5" title="Hauspunkte">
+  <select id="activitySubject"></select>
+  <button type="button" class="btn primary" id="addActivity">＋ Hinzufügen</button>
+ </div>
+
+ <div id="activityList"></div>
+ <div id="activityIdeas"></div>
+</section>
+
+<section class="card">
+ <div class="title">
+  <div><h3>🎁 Belohnungen</h3><div class="muted">Deine Hauspunkte kannst du gegen eigene Belohnungen eintauschen.</div></div>
+  <button type="button" class="btn secondary" id="showRewardIdeas">💡 Ideen anzeigen</button>
+ </div>
+
+ <div class="form">
+  <input id="rewardName" placeholder="z. B. Lieblingsfilm schauen">
+  <input id="rewardCost" type="number" min="1" max="10000" value="30">
+  <div></div>
+  <button type="button" class="btn primary" id="addReward">＋ Hinzufügen</button>
+ </div>
+
+ <div id="rewardList"></div>
+ <div id="rewardIdeas"></div>
+</section>
+
+<section class="card">
+ <div class="title"><div><h3>🕯 Verlauf</h3><div class="muted">Alle verdienten und ausgegebenen Hauspunkte.</div></div></div>
+ <div id="history"></div>
+</section>
+
+<section class="card" id="offlineLibrary" style="margin-top:18px">
+<h2>📖 Bibliothek – Karteikarten</h2>
+<p>Füge Lernnotizen ein. Am besten im Format <b>Begriff: Erklärung</b>. Die Erstellung läuft komplett offline.</p>
+<textarea id="libraryText" style="width:100%;min-height:150px;box-sizing:border-box;border-radius:12px;padding:12px"
+placeholder="Photosynthese: Prozess, bei dem Pflanzen Lichtenergie nutzen ..."></textarea>
+<div style="margin-top:10px"><button type="button" onclick="makeOfflineFlashcards()">✨ Karteikarten erstellen</button></div>
+<div id="flashcardOutput"></div>
+</section>
+</main>
+
+<aside class="stack">
+
+<section class="card">
+ <div class="title"><div><h3>🏆 Der Hauspokal</h3><div class="muted">Dein lokaler Wettbewerb.</div></div></div>
+ <div class="podium" id="cup"></div>
+ <div class="sortNote">Der Hauspokal ist in dieser Offline-Version nur für dieses Gerät. Einen echten gemeinsamen Online-Pokal können wir später ergänzen.</div>
+</section>
+
+<section class="card">
+ <div class="title"><div><h3>📊 Deine Stats</h3></div></div>
+ <div class="stats">
+  <div class="stat"><b id="done">0</b><small>Aufgaben geschafft</small></div>
+  <div class="stat"><b id="streak">0</b><small>Tage Streak</small></div>
+  <div class="stat"><b id="allEarned">0</b><small>HP verdient</small></div>
+ </div>
+</section>
+
+<section class="card">
+ <div class="title"><div><h3>🪄 Deine Fächer</h3><div class="muted">Deine 14 Hogwarts-Fächer.</div></div></div>
+ <div id="subjectSummary"></div>
+</section>
+
+<section class="card">
+ <div class="title"><div><h3>⚙️ Einstellungen</h3><div class="muted">Haus und Name kannst du jederzeit ändern.</div></div></div>
+ <button type="button" class="btn ghost" style="width:100%;margin-bottom:8px" id="changeHouse">🏰 Haus ändern</button>
+ <button type="button" class="btn ghost" style="width:100%" id="changeName">✒️ Name ändern</button>
+ <button type="button" class="btn danger" style="width:100%;margin-top:8px" id="clearData">Alles zurücksetzen</button>
+</section>
+
+</aside>
+</div></div>
+
+<footer>Komplett offline · Deine Daten bleiben auf diesem Gerät.</footer>
+</div>
+
+<div class="modalBack" id="modalBack">
+ <div class="modal">
+  <div class="modalHead"><h3 id="modalTitle">Neue Aufgabe</h3><button type="button" class="btn close" id="closeModal">×</button></div>
+  <label>Aufgabe</label>
+  <input id="modalName" placeholder="z. B. Hausaufgaben S. 84 Nr. 1–5">
+  <div class="modalGrid">
+   <div><label>Hauspunkte</label><input id="modalXP" type="number" min="1" max="100" value="5"></div>
+   <div><label>Fach</label><select id="modalSubject"></select></div>
+  </div>
+  <label>Art</label>
+  <select id="modalType">
+   <option value="Hausaufgabe">📜 Hausaufgabe</option>
+   <option value="Lernen">📖 Lernen</option>
+   <option value="Üben">🧠 Üben</option>
+   <option value="Prüfung">📝 Prüfungsvorbereitung</option>
+   <option value="Extra">⭐ Extra-Challenge</option>
+  </select>
+  <label>Fällig am (optional)</label>
+  <input id="modalDue" type="date">
+  <button type="button" class="btn primary" style="width:100%;margin-top:14px" id="saveModal">Speichern</button>
+ </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+
+const SUBJECTS=[
+  {id:"deutsch",name:"Deutsch",icon:"📚"},
+  {id:"englisch",name:"Englisch",icon:"🇬🇧"},
+  {id:"franzoesisch",name:"Französisch",icon:"🇫🇷"},
+  {id:"latein",name:"Latein",icon:"🏛️"},
+  {id:"mathe",name:"Mathematik",icon:"∑"},
+  {id:"bio",name:"Biologie",icon:"🧬"},
+  {id:"chemie",name:"Chemie",icon:"⚗️"},
+  {id:"geo",name:"Geografie",icon:"🌍"},
+  {id:"geschichte",name:"Geschichte",icon:"🏺"},
+  {id:"wipo",name:"WiPo",icon:"⚖️"},
+  {id:"sport",name:"Sport",icon:"🏃"},
+  {id:"kunst",name:"Kunst",icon:"🎨"},
+  {id:"musik",name:"Musik",icon:"🎵"},
+  {id:"religion",name:"Religion",icon:"✝️"}
+];
+
+const HOUSES=[
+ {id:"gryffindor",name:"Gryffindor",icon:"🦁"},
+ {id:"ravenclaw",name:"Ravenclaw",icon:"🦅"},
+ {id:"hufflepuff",name:"Hufflepuff",icon:"🦡"},
+ {id:"slytherin",name:"Slytherin",icon:"🐍"}
+];
+
+const activityIdeas=[
+ ["3 anspruchsvolle Matheaufgaben selbstständig lösen",7],
+ ["Eine Formel oder Regel aus dem Kopf erklären",3],
+ ["10 englische Vokabeln aktiv abrufen",3],
+ ["Einen kurzen englischen Text lesen und zusammenfassen",5],
+ ["10 französische Vokabeln aktiv abrufen",3],
+ ["5 eigene französische Sätze schreiben",5],
+ ["Ein Bio-Thema ohne Unterlagen in 5 Sätzen erklären",7],
+ ["Eine Geo-Grafik oder Karte selbst erklären",5],
+ ["Ein Wipo-Thema mit 3 Argumenten zusammenfassen",5],
+ ["Ein chemisches Prinzip aus dem Kopf erklären",7]
+];
+
+const rewardIdeas=[
+ ["Einen Film oder eine Folge schauen",30],
+ ["30 Minuten Lieblingsspiel",25],
+ ["30 Minuten Musik oder Podcast",15],
+ ["Einen Lieblingssnack genießen",15],
+ ["30 Minuten extra Freizeit",25]
+];
+
+let state=loadState();
+let activeSubject="alle";
+let modalMode="task";
+let editId=null;
+
+function defaultState(){
+ return {
+  name:"Nova",
+  house:null,
+  earned:0,
+  spent:0,
+  done:0,
+  streak:0,
+  lastActivityDay:null,
+  tasks:[],
+  activities:[],
+  rewards:[],
+  history:[],
+  timetable:{},
+  weekPlans:[],
+  habits:[],
+  habitChecks:{},
+  habitSettled:{},
+  dailyTopicDone:{},
+  housePoints:{
+   gryffindor:0,
+   ravenclaw:0,
+   hufflepuff:0,
+   slytherin:0
+  }
+ };
+}
+
+function loadState(){
+ try{
+  const s=JSON.parse(localStorage.getItem("hogwartsLernXP_v1"));
+  if(s&&Array.isArray(s.tasks)&&Array.isArray(s.activities)&&Array.isArray(s.rewards)&&Array.isArray(s.history)){
+   s.housePoints=s.housePoints||defaultState().housePoints;
+   s.timetable=s.timetable||{};
+   s.weekPlans=Array.isArray(s.weekPlans)?s.weekPlans:[];
+   s.habits=Array.isArray(s.habits)?s.habits:[];
+   s.habitChecks=s.habitChecks||{};
+   s.habitSettled=s.habitSettled||{};
+   s.dailyTopicDone=s.dailyTopicDone||{};
+   return s;
+  }
+ }catch(e){}
+ return defaultState();
+}
+
+function saveState(){
+ localStorage.setItem("hogwartsLernXP_v1",JSON.stringify(state));
+}
+
+function esc(value){
+ return String(value).replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+function house(id){
+ return HOUSES.find(h=>h.id===id);
+}
+
+function subject(id){
+ return SUBJECTS.find(s=>s.id===id);
+}
+
+function toast(message){
+ const t=document.getElementById("toast");
+ t.textContent=message;
+ t.classList.add("show");
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>t.classList.remove("show"),1900);
+}
+
+function localDay(date=new Date()){
+  const y=date.getFullYear(), m=String(date.getMonth()+1).padStart(2,"0"), d=String(date.getDate()).padStart(2,"0");
+  return `${y}-${m}-${d}`;
+}
+
+function updateStreak(){
+ const current=localDay();
+
+ if(state.lastActivityDay===current)return;
+
+ if(!state.lastActivityDay){
+  state.streak=1;
+ }else{
+  const a=new Date(state.lastActivityDay);
+  const b=new Date(current);
+  const diff=Math.round((b-a)/86400000);
+  state.streak=diff===1?state.streak+1:1;
+ }
+
+ state.lastActivityDay=current;
+}
+
+function levelInfo(){
+ const level=Math.floor(state.earned/100)+1;
+ const inside=state.earned%100;
+ const ranks=[
+  "Erstklässler",
+  "Zweitklässler",
+  "Drittklässler",
+  "Viertklässler",
+  "Fünftklässler",
+  "Sechstklässler",
+  "Siebtklässler"
+ ];
+
+ return {
+  level,
+  inside,
+  rank:ranks[Math.min(ranks.length-1,level-1)]
+ };
+}
+
+function addHistory(kind,text,xp,ref){
+ state.history.unshift({
+  id:Date.now()+Math.random(),
+  kind,
+  text,
+  xp,
+  ref,
+  time:new Date().toISOString()
+ });
+ state.history=state.history.slice(0,50);
+}
+
+function completeTask(task){
+ if(task.completed)return;
+
+ task.completed=true;
+ state.earned+=task.xp;
+ state.done++;
+ updateStreak();
+
+ if(state.house){
+  state.housePoints[state.house]+=task.xp;
+ }
+
+ addHistory("earn",task.name,task.xp,task.id);
+
+ saveState();
+ render();
+ toast("✨ +"+task.xp+" Hauspunkte für "+(house(state.house)?.name||"dein Haus")+"!");
+}
+
+function completeActivity(activity){
+ if(activity.completed)return;
+
+ activity.completed=true;
+ state.earned+=activity.xp;
+ state.done++;
+ updateStreak();
+
+ if(state.house){
+  state.housePoints[state.house]+=activity.xp;
+ }
+
+ addHistory("earn",activity.name,activity.xp,activity.id);
+
+ saveState();
+ render();
+ toast("✨ +"+activity.xp+" Hauspunkte!");
+}
+
+function render(){
+ const l=levelInfo();
+ const available=Math.max(0,state.earned-state.spent);
+ const h=house(state.house);
+
+ document.getElementById("welcome").textContent="Willkommen, "+state.name+" ✨";
+ document.getElementById("availableXP").textContent=available;
+ document.getElementById("myHouse").textContent=h?h.icon+" "+h.name:"Noch nicht gewählt";
+ document.getElementById("level").textContent=l.level;
+ document.getElementById("rank").textContent=l.rank;
+ document.getElementById("next").textContent=(100-l.inside)+" HP bis Level "+(l.level+1);
+ document.getElementById("levelBar").style.width=l.inside+"%";
+
+ document.getElementById("done").textContent=state.done;
+ document.getElementById("streak").textContent=state.streak;
+ document.getElementById("allEarned").textContent=state.earned;
+
+ renderSubjectSelectors();
+ renderTasks();
+ renderActivities();
+ renderRewards();
+ renderHistory();
+ renderCup();
+ renderSubjectSummary();
+
+ saveState();
+}
+
+function renderSubjectSelectors(){
+ const tabs=document.getElementById("subjectTabs");
+
+ tabs.innerHTML=
+  `<button type="button" class="tab ${activeSubject==="alle"?"active":""}" data-subject-tab="alle">Alle</button>`+
+  SUBJECTS.map(s=>
+   `<button type="button" class="tab ${activeSubject===s.id?"active":""}" data-subject-tab="${s.id}">
+    ${s.icon} ${s.name}
+   </button>`
+  ).join("");
+
+ const options=SUBJECTS.map(s=>
+  `<option value="${s.id}">${s.name}</option>`
+ ).join("");
+
+ document.getElementById("activitySubject").innerHTML=options;
+ document.getElementById("modalSubject").innerHTML=options;
+}
+
+function renderTasks(){
+ const list=document.getElementById("taskList");
+
+ let tasks=state.tasks;
+
+ if(activeSubject!=="alle"){
+  tasks=tasks.filter(t=>t.subject===activeSubject);
+ }
+
+ if(!tasks.length){
+  list.innerHTML=`
+   <div class="empty">
+    ${activeSubject==="alle"
+     ?"Noch keine Aufgaben. Trag oben deine erste Hausaufgabe ein! 📜"
+     :"In diesem Fach gibt es noch keine Aufgaben."}
+   </div>
+  `;
+  return;
+ }
+
+ tasks=[...tasks].sort((a,b)=>{
+  if(a.completed!==b.completed)return a.completed?1:-1;
+  return (a.due||"9999-12-31").localeCompare(b.due||"9999-12-31");
+ });
+
+ list.innerHTML=`<div class="list">${
+  tasks.map(t=>{
+   const s=subject(t.subject);
+   const due=t.due
+    ?new Date(t.due+"T12:00:00").toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"})
+    :"";
+
+   return `
+    <div class="item" style="${t.completed?"opacity:.62":""}">
+     <div class="itemMain">
+      <b>${t.completed?"✓ ":""}${esc(t.name)}</b>
+      <small>${s?s.icon+" "+s.name:""} · ${esc(t.type)}${due?" · fällig "+due:""}</small>
+     </div>
+
+     <span class="tag">+${t.xp} HP</span>
+
+     <div class="actions">
+      <button type="button" class="btn primary" data-complete-task="${t.id}" ${t.completed?"disabled":""}>✓</button>
+      <button type="button" class="btn ghost" data-edit-task="${t.id}">✎</button>
+      <button type="button" class="btn danger" data-delete-task="${t.id}">×</button>
+     </div>
+    </div>
+   `;
+  }).join("")
+ }</div>`;
+}
+
+function renderActivities(){
+ const list=document.getElementById("activityList");
+
+ if(!state.activities.length){
+  list.innerHTML=`<div class="empty">Noch keine Lernaktivitäten. Du kannst sie oben selbst anlegen.</div>`;
+  return;
+ }
+
+ list.innerHTML=`<div class="list">${
+  state.activities.map(a=>{
+   const s=subject(a.subject);
+
+   return `
+    <div class="item" style="${a.completed?"opacity:.62":""}">
+     <div class="itemMain">
+      <b>${a.completed?"✓ ":""}${esc(a.name)}</b>
+      <small>${s?s.icon+" "+s.name:"Lernmission"}</small>
+     </div>
+     <span class="tag">+${a.xp} HP</span>
+     <div class="actions">
+      <button type="button" class="btn primary" data-complete-activity="${a.id}" ${a.completed?"disabled":""}>✓</button>
+      <button type="button" class="btn ghost" data-edit-activity="${a.id}">✎</button>
+      <button type="button" class="btn danger" data-delete-activity="${a.id}">×</button>
+     </div>
+    </div>
+   `;
+  }).join("")
+ }</div>`;
+}
+
+function renderRewards(){
+ const list=document.getElementById("rewardList");
+ const available=Math.max(0,state.earned-state.spent);
+
+ if(!state.rewards.length){
+  list.innerHTML=`<div class="empty">Noch keine Belohnungen. Leg fest, wofür du deine Hauspunkte ausgeben möchtest.</div>`;
+  return;
+ }
+
+ list.innerHTML=`<div class="list">${
+  state.rewards.map(r=>`
+   <div class="item">
+    <div class="itemMain">
+     <b>${esc(r.name)}</b>
+     <small>${r.cost} Hauspunkte</small>
+    </div>
+
+    <span class="tag">${r.cost} HP</span>
+
+    <div class="actions">
+     <button type="button" class="btn primary" data-redeem="${r.id}" ${available<r.cost?"disabled":""}>Einlösen</button>
+     <button type="button" class="btn ghost" data-edit-reward="${r.id}">✎</button>
+     <button type="button" class="btn danger" data-delete-reward="${r.id}">×</button>
+    </div>
+   </div>
+  `).join("")
+ }</div>`;
+}
+
+function renderHistory(){
+ const box=document.getElementById("history");
+
+ if(!state.history.length){
+  box.innerHTML=`<div class="empty">Noch keine Aktionen.</div>`;
+  return;
+ }
+
+ box.innerHTML=`<div class="history">${
+  state.history.map(e=>{
+   const date=new Date(e.time);
+   const time=date.toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"})
+    +" · "+
+    date.toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"});
+
+   const earn=e.kind==="earn";
+
+   return `
+    <div class="historyItem">
+     <div class="hicon">${earn?"⚡":"🎁"}</div>
+     <div class="htext">
+      <b>${earn?"+":"−"}${e.xp} HP</b> · ${esc(e.text)}
+      <small>${time}</small>
+     </div>
+     <button type="button" class="undo" data-undo="${e.id}">Rückgängig</button>
+    </div>
+   `;
+  }).join("")
+ }</div>`;
+}
+
+function renderCup(){
+ const sorted=[...HOUSES].sort(
+  (a,b)=>state.housePoints[b.id]-state.housePoints[a.id]
+ );
+
+ document.getElementById("cup").innerHTML=sorted.map((h,i)=>`
+  <div class="houseRow" ${state.house===h.id?'style="border-color:#c99a35;background:#fffaf0"':""}>
+   <strong>${i+1}.</strong>
+   <span class="houseIcon">${h.icon}</span>
+   <div><b>${h.name}</b>${state.house===h.id?'<small style="display:block;color:#a07420;font:11px system-ui">Dein Haus</small>':""}</div>
+   <span class="housePoints">${state.housePoints[h.id]} HP</span>
+  </div>
+ `).join("");
+}
+
+function renderSubjectSummary(){
+ document.getElementById("subjectSummary").innerHTML=`
+  <div class="list">
+   ${SUBJECTS.map(s=>{
+    const open=state.tasks.filter(t=>t.subject===s.id&&!t.completed).length;
+    const done=state.tasks.filter(t=>t.subject===s.id&&t.completed).length;
+    return `
+     <div class="item" style="padding:9px 10px">
+      <span style="font-size:20px">${s.icon}</span>
+      <div class="itemMain"><b>${s.name}</b><small>${open} offen · ${done} geschafft</small></div>
+     </div>
+    `;
+   }).join("")}
+  </div>
+ `;
+}
+
+function showActivityIdeas(){
+ document.getElementById("activityIdeas").innerHTML=`
+  <div class="ideas">
+   <b>💡 Ideen für die 10. Klasse</b>
+   <div class="muted">Übernimm nur, was gerade zu deinem Stoff passt.</div>
+   ${activityIdeas.map((x,i)=>`
+    <div class="idea">
+     <span class="ideaText">${esc(x[0])}</span>
+     <span class="ideaXP">+${x[1]} HP</span>
+     <button type="button" class="btn secondary" data-idea-a="${i}">Übernehmen</button>
+    </div>
+   `).join("")}
+  </div>
+ `;
+}
+
+function showRewardIdeas(){
+ document.getElementById("rewardIdeas").innerHTML=`
+  <div class="ideas">
+   <b>💡 Belohnungs-Ideen</b>
+   <div class="muted">Du kannst die Kosten später ändern.</div>
+   ${rewardIdeas.map((x,i)=>`
+    <div class="idea">
+     <span class="ideaText">${esc(x[0])}</span>
+     <span class="ideaXP">${x[1]} HP</span>
+     <button type="button" class="btn secondary" data-idea-r="${i}">Übernehmen</button>
+    </div>
+   `).join("")}
+  </div>
+ `;
+}
+
+function openTaskModal(id=null){
+ modalMode="task";
+ editId=id;
+
+ document.getElementById("modalTitle").textContent=
+  id?"Aufgabe bearbeiten":"Neue Aufgabe";
+
+ const task=id?state.tasks.find(t=>String(t.id)===String(id)):null;
+
+ document.getElementById("modalName").value=task?task.name:"";
+ document.getElementById("modalXP").value=task?task.xp:5;
+ document.getElementById("modalSubject").value=task?task.subject:(activeSubject==="alle"?"mathe":activeSubject);
+ document.getElementById("modalType").value=task?task.type:"Hausaufgabe";
+ document.getElementById("modalDue").value=task?task.due||"":"";
+
+ document.getElementById("modalBack").classList.add("open");
+}
+
+function openActivityModal(id){
+ modalMode="activity";
+ editId=id;
+
+ const a=state.activities.find(x=>String(x.id)===String(id));
+ if(!a)return;
+
+ document.getElementById("modalTitle").textContent="Lernaktivität bearbeiten";
+ document.getElementById("modalName").value=a.name;
+ document.getElementById("modalXP").value=a.xp;
+ document.getElementById("modalSubject").value=a.subject;
+ document.getElementById("modalType").value="Lernen";
+ document.getElementById("modalDue").value="";
+
+ document.getElementById("modalBack").classList.add("open");
+}
+
+function openRewardModal(id){
+ modalMode="reward";
+ editId=id;
+
+ const r=state.rewards.find(x=>String(x.id)===String(id));
+ if(!r)return;
+
+ document.getElementById("modalTitle").textContent="Belohnung bearbeiten";
+ document.getElementById("modalName").value=r.name;
+ document.getElementById("modalXP").value=r.cost;
+ document.getElementById("modalSubject").value="mathe";
+ document.getElementById("modalType").value="Lernen";
+ document.getElementById("modalDue").value="";
+
+ document.getElementById("modalBack").classList.add("open");
+}
+
+function closeModal(){
+ document.getElementById("modalBack").classList.remove("open");
+}
+
+document.getElementById("addTaskTop").onclick=()=>openTaskModal();
+document.getElementById("closeModal").onclick=closeModal;
+
+document.getElementById("modalBack").onclick=e=>{
+ if(e.target.id==="modalBack")closeModal();
+};
+
+document.getElementById("saveModal").onclick=()=>{
+ const name=document.getElementById("modalName").value.trim();
+ const xp=Math.max(1,Number(document.getElementById("modalXP").value)||1);
+
+ if(!name){
+  toast("Gib zuerst einen Namen ein.");
+  return;
+ }
+
+ if(modalMode==="task"){
+  const data={
+   name,
+   xp,
+   subject:document.getElementById("modalSubject").value,
+   type:document.getElementById("modalType").value,
+   due:document.getElementById("modalDue").value
+  };
+
+  if(editId){
+   const task=state.tasks.find(t=>String(t.id)===String(editId));
+   Object.assign(task,data);
+  }else{
+   state.tasks.push({
+    id:Date.now()+Math.random(),
+    ...data,
+    completed:false
+   });
+  }
+ }else if(modalMode==="activity"){
+  const a=state.activities.find(x=>String(x.id)===String(editId));
+  Object.assign(a,{
+   name,
+   xp,
+   subject:document.getElementById("modalSubject").value
+  });
+ }else{
+  const r=state.rewards.find(x=>String(x.id)===String(editId));
+  r.name=name;
+  r.cost=xp;
+ }
+
+ closeModal();
+ saveState();
+ render();
+ toast("Gespeichert ✓");
+};
+
+document.getElementById("addActivity").onclick=()=>{
+ const name=document.getElementById("activityName").value.trim();
+ const xp=Math.max(1,Number(document.getElementById("activityXP").value)||1);
+
+ if(!name){
+  toast("Gib zuerst eine Aktivität ein.");
+  return;
+ }
+
+ state.activities.push({
+  id:Date.now()+Math.random(),
+  name,
+  xp,
+  subject:document.getElementById("activitySubject").value,
+  completed:false
+ });
+
+ document.getElementById("activityName").value="";
+ saveState();
+ render();
+ toast("Lernaktivität hinzugefügt ✨");
+};
+
+document.getElementById("addReward").onclick=()=>{
+ const name=document.getElementById("rewardName").value.trim();
+ const cost=Math.max(1,Number(document.getElementById("rewardCost").value)||1);
+
+ if(!name){
+  toast("Gib zuerst eine Belohnung ein.");
+  return;
+ }
+
+ state.rewards.push({
+  id:Date.now()+Math.random(),
+  name,
+  cost
+ });
+
+ document.getElementById("rewardName").value="";
+ saveState();
+ render();
+ toast("Belohnung hinzugefügt 🎁");
+};
+
+document.getElementById("showActivityIdeas").onclick=showActivityIdeas;
+document.getElementById("showRewardIdeas").onclick=showRewardIdeas;
+
+document.addEventListener("click",event=>{
+ const b=event.target.closest("button");
+ if(!b)return;
+
+ if(b.dataset.subjectTab){
+  activeSubject=b.dataset.subjectTab;
+  render();
+  return;
+ }
+
+ if(b.dataset.completeTask){
+  const t=state.tasks.find(x=>String(x.id)===b.dataset.completeTask);
+  if(t)completeTask(t);
+  return;
+ }
+
+ if(b.dataset.completeActivity){
+  const a=state.activities.find(x=>String(x.id)===b.dataset.completeActivity);
+  if(a)completeActivity(a);
+  return;
+ }
+
+ if(b.dataset.editTask){
+  openTaskModal(b.dataset.editTask);
+  return;
+ }
+
+ if(b.dataset.deleteTask){
+  if(confirm("Diese Aufgabe löschen?")){
+   state.tasks=state.tasks.filter(x=>String(x.id)!==b.dataset.deleteTask);
+   saveState();render();
+  }
+  return;
+ }
+
+ if(b.dataset.editActivity){
+  openActivityModal(b.dataset.editActivity);
+  return;
+ }
+
+ if(b.dataset.deleteActivity){
+  if(confirm("Diese Lernaktivität löschen?")){
+   state.activities=state.activities.filter(x=>String(x.id)!==b.dataset.deleteActivity);
+   saveState();render();
+  }
+  return;
+ }
+
+ if(b.dataset.editReward){
+  openRewardModal(b.dataset.editReward);
+  return;
+ }
+
+ if(b.dataset.deleteReward){
+  if(confirm("Diese Belohnung löschen?")){
+   state.rewards=state.rewards.filter(x=>String(x.id)!==b.dataset.deleteReward);
+   saveState();render();
+  }
+  return;
+ }
+
+ if(b.dataset.redeem){
+  const r=state.rewards.find(x=>String(x.id)===b.dataset.redeem);
+  if(!r)return;
+
+  const available=state.earned-state.spent;
+
+  if(available<r.cost){
+   toast("Dafür fehlen dir noch "+(r.cost-available)+" HP.");
+   return;
+  }
+
+  state.spent+=r.cost;
+
+  addHistory("spend",r.name,r.cost,r.id);
+
+  saveState();
+  render();
+  toast("🎁 Belohnung eingelöst!");
+  return;
+ }
+
+ if(b.dataset.ideaA){
+  const idea=activityIdeas[Number(b.dataset.ideaA)];
+
+  state.activities.push({
+   id:Date.now()+Math.random(),
+   name:idea[0],
+   xp:idea[1],
+   subject:inferSubject(idea[0]),
+   completed:false
+  });
+
+  saveState();
+  render();
+  showActivityIdeas();
+  toast("Idee übernommen ✨");
+  return;
+ }
+
+ if(b.dataset.ideaR){
+  const idea=rewardIdeas[Number(b.dataset.ideaR)];
+
+  state.rewards.push({
+   id:Date.now()+Math.random(),
+   name:idea[0],
+   cost:idea[1]
+  });
+
+  saveState();
+  render();
+  showRewardIdeas();
+  toast("Belohnung übernommen 🎁");
+  return;
+ }
+
+ if(b.dataset.undo){
+  undoEntry(b.dataset.undo);
+ }
+});
+
+function inferSubject(text){
+ const lower=text.toLowerCase();
+
+ if(lower.includes("mathe")||lower.includes("formel")||lower.includes("aufgaben"))
+  return "mathe";
+ if(lower.includes("englisch")||lower.includes("englische"))
+  return "englisch";
+ if(lower.includes("französ")||lower.includes("französische"))
+  return "franzoesisch";
+ if(lower.includes("bio"))
+  return "bio";
+ if(lower.includes("geo")||lower.includes("karte"))
+  return "geo";
+ if(lower.includes("wipo"))
+  return "wipo";
+ if(lower.includes("chem"))
+  return "chemie";
+
+ return "mathe";
+}
+
+function undoEntry(id){
+ const index=state.history.findIndex(x=>String(x.id)===String(id));
+ if(index<0)return;
+
+ const entry=state.history[index];
+
+ if(entry.kind==="earn"){
+  state.earned=Math.max(0,state.earned-entry.xp);
+  state.done=Math.max(0,state.done-1);
+
+  if(state.house){
+   state.housePoints[state.house]=Math.max(
+    0,
+    state.housePoints[state.house]-entry.xp
+   );
+  }
+
+  const task=state.tasks.find(x=>String(x.id)===String(entry.ref));
+  const activity=state.activities.find(x=>String(x.id)===String(entry.ref));
+
+  if(task)task.completed=false;
+  if(activity)activity.completed=false;
+ }else if(entry.kind==="penalty"){
+  state.earned+=entry.xp;
+  if(state.house)state.housePoints[state.house]+=entry.xp;
+  if(entry.ref)delete state.habitSettled[entry.ref];
+ }else{
+  state.spent=Math.max(0,state.spent-entry.xp);
+ }
+
+ state.history.splice(index,1);
+
+ saveState();
+ render();
+ toast("Aktion rückgängig gemacht");
+}
+
+document.getElementById("changeHouse").onclick=()=>{
+ chooseHouse(true);
+};
+
+document.getElementById("changeName").onclick=()=>{
+ const name=prompt("Wie soll die App dich nennen?",state.name);
+
+ if(name&&name.trim()){
+  state.name=name.trim();
+  saveState();
+  render();
+ }
+};
+
+document.getElementById("clearData").onclick=()=>{
+ if(confirm("Wirklich alles löschen? Aufgaben, Belohnungen, Punkte und Haus werden entfernt.")){
+  localStorage.removeItem("hogwartsLernXP_v1");
+  state=defaultState();
+  activeSubject="alle";
+  saveState();
+  render();
+  chooseHouse(false);
+ }
+};
+
+function chooseHouse(force){
+ const current=house(state.house);
+
+ const options=HOUSES.map((h,i)=>
+  `${i+1}. ${h.icon} ${h.name}`
+ ).join("\n");
+
+ const answer=prompt(
+  "🏰 Der Sprechende Hut\n\nWelches Haus soll dich aufnehmen?\n\n"+
+  options+
+  "\n\nSchreibe 1, 2, 3 oder 4."
+ );
+
+ const index=Number(answer)-1;
+
+ if(index>=0&&index<HOUSES.length){
+  state.house=HOUSES[index].id;
+  saveState();
+  render();
+  toast("🏰 Willkommen in "+HOUSES[index].name+"!");
+ }else if(!current&&!force){
+  setTimeout(()=>chooseHouse(false),100);
+ }
+}
+
+
+/* =========================
+   V3: Stundenplan / Wochenplan / Habits / Thema des Tages
+   ========================= */
+
+const V3_DAYS=["Mo","Di","Mi","Do","Fr","Sa","So"];
+const V3_DAY_NAMES=["Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"];
+const V3_CATS={
+  test:{label:"Arbeit/Klausur",icon:"📝",cls:"test"},
+  learn:{label:"Lernen",icon:"📚",cls:"learn"},
+  homework:{label:"Hausaufgaben",icon:"📖",cls:"homework"},
+  sport:{label:"Training",icon:"🏐",cls:"sport"},
+  free:{label:"Freizeit",icon:"🎨",cls:"free"},
+  other:{label:"Sonstiges",icon:"📌",cls:"other"}
+};
+const V3_TOPICS=[
+ {icon:"🌌",title:"Warum sind Schwarze Löcher schwarz?",text:"Schwarze Löcher sind Bereiche, aus denen Licht ab einem bestimmten Abstand nicht mehr entkommen kann. Spannend ist dabei nicht nur ihre Schwerkraft, sondern auch, wie sie Raum und Zeit beeinflussen.",qs:["Was bezeichnet man als Ereignishorizont?","Warum können wir ein Schwarzes Loch nicht direkt sehen?"]},
+ {icon:"🐝",title:"Wie finden Bienen den Weg zurück?",text:"Honigbienen können sich an Landschaftsmerkmalen orientieren und nutzen unter anderem die Stellung der Sonne. Sie können außerdem Informationen über Futterquellen an andere Bienen weitergeben.",qs:["Welche Rolle spielt die Sonne bei der Orientierung?","Wie können Bienen anderen Bienen eine Futterquelle anzeigen?"]},
+ {icon:"✈️",title:"Warum kann ein Flugzeug fliegen?",text:"Beim Fliegen wirken mehrere Kräfte zusammen: Auftrieb, Gewicht, Schub und Luftwiderstand. Die Form und Bewegung der Tragflächen beeinflussen, wie die Luft um sie herum strömt.",qs:["Welche vier Kräfte sind beim Flug wichtig?","Was ist der Unterschied zwischen Auftrieb und Schub?"]},
+ {icon:"🌋",title:"Warum entstehen Vulkane?",text:"Vulkane hängen mit Vorgängen im Erdinneren und mit der Bewegung von Erdplatten zusammen. Wo Gestein schmilzt und Magma aufsteigen kann, kann vulkanische Aktivität entstehen.",qs:["Was ist Magma?","Welche Verbindung gibt es zwischen Vulkanen und Plattentektonik?"]},
+ {icon:"📡",title:"Wie funktioniert GPS?",text:"GPS bestimmt eine Position mithilfe von Signalen mehrerer Satelliten. Das Gerät misst, wie lange die Signale unterwegs waren, und berechnet daraus seine Position.",qs:["Warum braucht ein GPS-Gerät mehrere Satelliten?","Welche Größe wird aus der Signallaufzeit abgeleitet?"]},
+ {icon:"🧠",title:"Warum träumen wir?",text:"Träume treten besonders häufig während bestimmter Schlafphasen auf. Forschende untersuchen unter anderem, welche Rolle Gedächtnis, Gefühle und die Verarbeitung von Erlebnissen dabei spielen.",qs:["Was ist die REM-Schlafphase?","Welche Funktionen von Träumen werden wissenschaftlich diskutiert?"]},
+ {icon:"☁️",title:"Wie entstehen Wolken?",text:"Wolken entstehen, wenn feuchte Luft abkühlt und Wasserdampf kondensiert. Dabei bilden sich winzige Wassertröpfchen oder Eiskristalle in der Atmosphäre.",qs:["Was bedeutet Kondensation?","Warum kann aufsteigende Luft zur Wolkenbildung führen?"]},
+ {icon:"🧭",title:"Wie funktioniert ein Kompass?",text:"Ein Magnetkompass richtet sich am Magnetfeld der Erde aus. Die Kompassnadel zeigt dabei ungefähr in Richtung des magnetischen Nordens.",qs:["Warum richtet sich eine Kompassnadel aus?","Warum ist magnetischer Norden nicht exakt dasselbe wie der geografische Nordpol?"]},
+ {icon:"🎵",title:"Warum bekommen wir bei Musik manchmal Gänsehaut?",text:"Musik kann Erwartungen aufbauen und überraschend auflösen. Solche starken Reaktionen hängen unter anderem mit Belohnungs- und Emotionssystemen des Gehirns zusammen.",qs:["Was hat Überraschung mit musikalischen Reaktionen zu tun?","Warum reagieren Menschen unterschiedlich auf dieselbe Musik?"]},
+ {icon:"🔐",title:"Was bedeutet Verschlüsselung?",text:"Verschlüsselung verändert verständliche Informationen so, dass nur berechtigte Personen sie wieder in die ursprüngliche Form zurückführen können. Dabei kommen Schlüssel und mathematische Verfahren zum Einsatz.",qs:["Was ist ein Schlüssel?","Was ist der Unterschied zwischen Verschlüsselung und einem einfachen Passwort?"]},
+ {icon:"🗳️",title:"Was bedeutet Gewaltenteilung?",text:"Gewaltenteilung verteilt staatliche Macht auf verschiedene Bereiche. Klassisch unterscheidet man Legislative, Exekutive und Judikative, damit Macht kontrolliert und begrenzt werden kann.",qs:["Welche drei Gewalten gibt es?","Warum soll Gewaltenteilung Macht begrenzen?"]},
+ {icon:"❄️",title:"Warum kühlt ein Kühlschrank?",text:"Ein Kühlschrank transportiert Wärme aus seinem Innenraum nach außen. Ein Kältemittel durchläuft dabei einen Kreislauf, in dem Verdampfen, Verdichten und Verflüssigen eine wichtige Rolle spielen.",qs:["Warum ist ein Kühlschrank kein Gerät, das einfach 'Kälte erzeugt'?","Welche Aufgabe hat das Kältemittel?"]},
+ {icon:"🌱",title:"Können Pflanzen miteinander kommunizieren?",text:"Pflanzen können chemische Signale abgeben und auf Signale aus ihrer Umgebung reagieren. Unter bestimmten Bedingungen beeinflussen sie dadurch auch andere Pflanzen und Organismen.",qs:["Was kann ein chemisches Signal bei Pflanzen bewirken?","Welche Rolle können Duftstoffe spielen?"]},
+ {icon:"🏛️",title:"Wie funktionierten antike Demokratien?",text:"Antike politische Systeme unterschieden sich stark von modernen Demokratien. Besonders interessant ist, wer überhaupt politisch mitentscheiden durfte und wie Entscheidungen getroffen wurden.",qs:["Wer durfte in der athenischen Demokratie mitbestimmen?","Was unterscheidet sie von einer modernen repräsentativen Demokratie?"]},
+ {icon:"🎨",title:"Warum wirken manche Farben harmonisch?",text:"Farbwirkung hängt unter anderem von Farbton, Helligkeit, Sättigung und dem Verhältnis verschiedener Farben zueinander ab. Farbmodelle und Kontraste helfen dabei, Farbkombinationen systematisch zu verstehen.",qs:["Was ist ein Komplementärkontrast?","Warum verändert ein hoher Helligkeitskontrast die Wirkung eines Bildes?"]},
+ {icon:"🩸",title:"Warum gibt es verschiedene Blutgruppen?",text:"Blutgruppen unterscheiden sich durch bestimmte Merkmale auf roten Blutkörperchen. Das Immunsystem kann fremde Merkmale erkennen, weshalb die Verträglichkeit bei Blutübertragungen wichtig ist.",qs:["Was unterscheidet die ABO-Blutgruppen?","Warum muss eine Bluttransfusion verträglich sein?"]},
+ {icon:"🌍",title:"Warum gibt es Jahreszeiten?",text:"Die Jahreszeiten entstehen nicht hauptsächlich durch den Abstand der Erde zur Sonne, sondern durch die Neigung der Erdachse. Dadurch verändert sich im Jahresverlauf der Einfallswinkel des Sonnenlichts.",qs:["Welche Rolle spielt die Erdachsenneigung?","Warum sind die Tage im Sommer länger?"]},
+ {icon:"🧊",title:"Warum schwimmt Eis auf Wasser?",text:"Beim Gefrieren ordnen sich Wassermoleküle in einer Struktur an, die mehr Raum einnimmt als flüssiges Wasser. Dadurch ist Eis weniger dicht und kann schwimmen.",qs:["Was bedeutet Dichte?","Warum nimmt Wasser beim Gefrieren mehr Volumen ein?"]},
+ {icon:"🗣️",title:"Wie verändert sich Sprache?",text:"Sprachen verändern sich ständig. Wörter, Aussprache und Grammatik können sich durch Generationen, Kontakte zwischen Sprachgemeinschaften, Medien und gesellschaftliche Entwicklungen wandeln.",qs:["Warum entstehen neue Wörter?","Wie kann Sprachkontakt eine Sprache verändern?"]},
+ {icon:"🌈",title:"Warum sehen wir einen Regenbogen?",text:"Regentropfen können Sonnenlicht brechen, reflektieren und in seine verschiedenen Farbbereiche aufteilen. Das Zusammenspiel dieser Effekte erzeugt die typische farbige Erscheinung.",qs:["Was bedeutet Lichtbrechung?","Warum sehen wir mehrere Farben statt nur weißes Licht?"]}
+];
+
+function v3DateFromMonday(offsetWeeks=0){
+  const d=new Date();
+  const day=(d.getDay()+6)%7;
+  d.setHours(12,0,0,0);
+  d.setDate(d.getDate()-day+offsetWeeks*7);
+  return d;
+}
+function v3DateKey(d){return localDay(d);}
+function v3WeekKey(offset=0){return v3DateKey(v3DateFromMonday(offset));}
+function v3WeekDays(offset=0){
+  const start=v3DateFromMonday(offset);
+  return Array.from({length:7},(_,i)=>{
+    const d=new Date(start);
+    d.setDate(start.getDate()+i);
+    return d;
+  });
+}
+let v3WeekOffset=0;
+let v3PlannerEditId=null;
+let v3HabitEditId=null;
+
+function v3FillSubjects(){
+  const opts=SUBJECTS.map(s=>`<option value="${s.id}">${s.icon} ${s.name}</option>`).join("");
+  const ps=document.getElementById("plannerSubject");
+  if(ps)ps.innerHTML=`<option value="">— kein bestimmtes Fach —</option>${opts}`;
+}
+
+function v3ShowPage(page){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  const target=document.getElementById("page-"+page);
+  if(target)target.classList.add("active");
+  document.querySelectorAll(".pageBtn").forEach(b=>{
+    const active=b.dataset.page===page;
+    b.classList.toggle("primary",active);
+    b.classList.toggle("ghost",!active);
+  });
+  if(page==="timetable")v3RenderTimetable();
+  if(page==="week")v3RenderWeek();
+  if(page==="habits"){v3SettlePastHabits();v3RenderHabits();}
+  if(page==="topic")v3RenderTopic();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function v3RenderTimetable(){
+  const grid=document.getElementById("timetableGrid");
+  if(!grid)return;
+  let html=`<div class="ttCell ttHead">Std.</div>`+
+    V3_DAYS.slice(0,5).map((d,i)=>`<div class="ttCell ttHead">${d}<small style="display:block;font:10px system-ui,sans-serif;color:var(--muted)">${V3_DAY_NAMES[i]}</small></div>`).join("");
+  for(let p=1;p<=10;p++){
+    html+=`<div class="ttCell ttPeriod">${p}</div>`;
+    for(let day=0;day<5;day++){
+      const key=`${day}-${p}`;
+      const id=state.timetable[key];
+      const s=id?subject(id):null;
+      html+=`<div class="ttCell"><button type="button" class="ttSubject ${s?"filled":""}" data-tt="${key}">
+        ${s?`${s.icon} ${esc(s.name)}<small>Stunde ${p}</small>`:"＋ Fach eintragen"}
+      </button></div>`;
+    }
+  }
+  grid.innerHTML=html;
+}
+
+function v3SetTimetable(key){
+  const current=state.timetable[key]||"";
+  const options=["0. — frei",...SUBJECTS.map((s,i)=>`${i+1}. ${s.icon} ${s.name}`)].join("\n");
+  const answer=prompt("🏫 Fach für diese Stunde\n\n"+options+"\n\nNummer eingeben. 0 = frei.", current?String(SUBJECTS.findIndex(s=>s.id===current)+1):"");
+  if(answer===null)return;
+  const n=Number(answer);
+  if(n===0){delete state.timetable[key];}
+  else if(n>=1&&n<=SUBJECTS.length){state.timetable[key]=SUBJECTS[n-1].id;}
+  else{toast("Bitte eine Nummer von 0 bis "+SUBJECTS.length+" eingeben.");return;}
+  saveState();v3RenderTimetable();toast("Stundenplan gespeichert ✓");
+}
+
+function v3RenderWeek(){
+  const label=document.getElementById("weekLabel");
+  const grid=document.getElementById("weekGrid");
+  if(!grid)return;
+  const days=v3WeekDays(v3WeekOffset);
+  const start=days[0],end=days[6];
+  label.textContent=`${start.toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"})} – ${end.toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit",year:"numeric"})}`;
+  grid.innerHTML=days.map((d,i)=>{
+    const key=v3DateKey(d);
+    const entries=state.weekPlans.filter(x=>x.date===key).sort((a,b)=>(a.time||"99:99").localeCompare(b.time||"99:99"));
+    return `<div class="dayCol">
+      <div class="dayHead"><b>${V3_DAY_NAMES[i]}</b><small>${d.toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"})}</small></div>
+      <div class="dayEntries">
+        ${entries.length?entries.map(e=>{
+          const c=V3_CATS[e.category]||V3_CATS.other;
+          const s=e.subject?subject(e.subject):null;
+          return `<div class="planEntry ${c.cls}">
+            <button type="button" class="entryDelete" data-plan-delete="${e.id}" title="Löschen">×</button>
+            <b>${c.icon} ${esc(e.name)} ${e.category==="test"?'<span class="badgeTest">ARBEIT</span>':""}</b>
+            <small>${e.time?e.time+" · ":""}${s?s.icon+" "+s.name:""}</small>
+          </div>`;
+        }).join(""):`<div class="empty" style="padding:12px">Noch nichts eingetragen.</div>`}
+        <button type="button" class="dayAdd" data-plan-add="${key}">＋ Eintrag</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function v3OpenPlanner(dateKey){
+  v3PlannerEditId=null;
+  document.getElementById("plannerModalTitle").textContent="Neuer Wochenplan-Eintrag";
+  document.getElementById("plannerName").value="";
+  document.getElementById("plannerTime").value="";
+  document.getElementById("plannerCategory").value="learn";
+  v3FillSubjects();
+  const opts=v3WeekDays(v3WeekOffset).map((d,i)=>`<option value="${v3DateKey(d)}">${V3_DAY_NAMES[i]}</option>`).join("");
+  document.getElementById("plannerDay").innerHTML=opts;
+  if(dateKey)document.getElementById("plannerDay").value=dateKey;
+  document.getElementById("plannerSubject").value="";
+  document.getElementById("plannerModalBack").classList.add("open");
+}
+function v3ClosePlanner(){document.getElementById("plannerModalBack").classList.remove("open");}
+
+function v3RenderHabits(){
+  const grid=document.getElementById("habitGrid"), stats=document.getElementById("habitStats");
+  if(!grid)return;
+  const days=v3WeekDays(v3WeekOffset);
+  let html=`<div class="hCell hHead">Habit</div>`+
+    days.map((d,i)=>`<div class="hCell hHead">${V3_DAYS[i]}<br>${d.toLocaleDateString("de-DE",{day:"2-digit"})}</div>`).join("");
+  if(!state.habits.length){
+    html+=`<div class="hCell" style="grid-column:1/-1;display:block;padding:24px"><div class="empty">Noch keine Habits. Lege dein erstes eigenes Habit an.</div></div>`;
+  }else{
+    state.habits.forEach(h=>{
+      html+=`<div class="hCell hName"><b>${esc(h.name)}</b><small>+${h.reward} / −${h.penalty} HP</small><div class="habitActions">
+        <button type="button" class="btn ghost" data-habit-edit="${h.id}">✎</button>
+        <button type="button" class="btn danger" data-habit-delete="${h.id}">×</button>
+      </div></div>`;
+      days.forEach(d=>{
+        const key=`${h.id}_${v3DateKey(d)}`;
+        const status=state.habitChecks[key]||"";
+        html+=`<div class="hCell">
+          <button type="button" class="hCheck ${status==="done"?"done":status==="excused"?"excused":""}" data-habit-toggle="${key}" title="Antippen: erledigt / offen / Ausnahme">
+            ${status==="done"?"✓":status==="excused"?"—":"⬜"}
+          </button>
+        </div>`;
+      });
+    });
+  }
+  grid.innerHTML=html;
+  const totalDone=Object.values(state.habitChecks).filter(v=>v==="done").length;
+  const penalties=state.history.filter(x=>x.kind==="penalty").reduce((sum,x)=>sum+x.xp,0);
+  stats.innerHTML=`
+    <div class="habitStat"><b>${state.habits.length}</b><small>Habits</small></div>
+    <div class="habitStat"><b>${totalDone}</b><small>erledigte Habit-Tage</small></div>
+    <div class="habitStat"><b>−${penalties}</b><small>HP durch verpasste Habits</small></div>`;
+}
+
+function v3OpenHabit(id=null){
+  v3HabitEditId=id;
+  const h=id?state.habits.find(x=>String(x.id)===String(id)):null;
+  document.getElementById("habitModalTitle").textContent=h?"Habit bearbeiten":"Neues Habit";
+  document.getElementById("habitName").value=h?h.name:"";
+  document.getElementById("habitReward").value=h?h.reward:3;
+  document.getElementById("habitPenalty").value=h?h.penalty:2;
+  document.getElementById("habitModalBack").classList.add("open");
+}
+function v3CloseHabit(){document.getElementById("habitModalBack").classList.remove("open");}
+
+function v3AddHistory(kind,text,xp,ref){
+  addHistory(kind,text,xp,ref);
+}
+
+function v3SettlePastHabits(){
+  if(!state.habits.length)return;
+  const today=new Date();
+  today.setHours(12,0,0,0);
+  // Only settle days before today; current day is never penalized just because the app was opened.
+  for(let back=1;back<=30;back++){
+    const d=new Date(today); d.setDate(today.getDate()-back);
+    const date=v3DateKey(d);
+    state.habits.forEach(h=>{
+      const key=`${h.id}_${date}`;
+      if(state.habitSettled[key])return;
+      const status=state.habitChecks[key];
+      if(status!=="done" && status!=="excused" && h.penalty>0){
+        state.earned=Math.max(0,state.earned-h.penalty);
+        if(state.house)state.housePoints[state.house]=Math.max(0,state.housePoints[state.house]-h.penalty);
+        v3AddHistory("penalty",`Habit verpasst: ${h.name}`,h.penalty,key);
+      }
+      state.habitSettled[key]=true;
+    });
+  }
+  saveState();
+}
+
+function v3ToggleHabit(key){
+  const hId=key.split("_")[0];
+  const h=state.habits.find(x=>String(x.id)===String(hId));
+  if(!h)return;
+  const current=state.habitChecks[key]||"";
+  if(current===""){
+    state.habitChecks[key]="done";
+    if(h.reward>0){
+      state.earned+=h.reward;
+      if(state.house)state.housePoints[state.house]+=h.reward;
+      v3AddHistory("earn",`Habit: ${h.name}`,h.reward,key);
+    }
+    updateStreak();
+  }else if(current==="done"){
+    // Undo today's completion without creating a second history event.
+    state.habitChecks[key]="";
+    const idx=state.history.findIndex(x=>x.kind==="earn" && String(x.ref)===key);
+    if(idx>=0){
+      const e=state.history[idx];
+      state.earned=Math.max(0,state.earned-e.xp);
+      if(state.house)state.housePoints[state.house]=Math.max(0,state.housePoints[state.house]-e.xp);
+      state.history.splice(idx,1);
+    }
+  }else{
+    state.habitChecks[key]="";
+  }
+  saveState();render();v3RenderHabits();toast(state.habitChecks[key]==="done"?"✓ Habit erledigt":"Habit zurückgesetzt");
+}
+
+function v3ExcuseHabit(key){
+  state.habitChecks[key]="excused";
+  saveState();v3RenderHabits();toast("Ausnahme markiert — 0 HP Strafe.");
+}
+
+function v3RenderTopic(){
+  const box=document.getElementById("topicContent");
+  if(!box)return;
+  const date=new Date();
+  const idx=Math.floor(date.getTime()/86400000)%V3_TOPICS.length;
+  const topic=V3_TOPICS[(idx+V3_TOPICS.length)%V3_TOPICS.length];
+  const key=v3DateKey(date);
+  const done=!!state.dailyTopicDone[key];
+  box.innerHTML=`<div class="topicCard">
+    <div class="topicIcon">${topic.icon}</div>
+    <div class="muted">${date.toLocaleDateString("de-DE",{weekday:"long",day:"2-digit",month:"long"})}</div>
+    <h3>${esc(topic.title)}</h3>
+    <p>${esc(topic.text)}</p>
+    <div class="muted"><b>Mini-Entdeckungsfragen</b></div>
+    ${topic.qs.map(q=>`<div class="topicQuestion">🔎 ${esc(q)}</div>`).join("")}
+    <button type="button" class="btn ${done?"ghost":"primary"}" style="margin-top:14px" id="completeTopic" ${done?"disabled":""}>
+      ${done?"✓ Heute entdeckt":"✨ Thema entdeckt – +25 HP"}
+    </button>
+  </div>`;
+  const btn=document.getElementById("completeTopic");
+  if(btn)btn.onclick=()=>{
+    if(state.dailyTopicDone[key])return;
+    state.dailyTopicDone[key]=true;
+    state.earned+=25;
+    if(state.house)state.housePoints[state.house]+=25;
+    addHistory("earn","Thema des Tages: "+topic.title,25,key);
+    updateStreak();
+    saveState();render();v3RenderTopic();toast("🦉 +25 HP für deine Entdeckungsreise!");
+  };
+}
+
+document.querySelectorAll(".pageBtn").forEach(b=>b.onclick=()=>v3ShowPage(b.dataset.page));
+document.getElementById("prevWeek").onclick=()=>{v3WeekOffset--;v3RenderWeek();v3RenderHabits();};
+document.getElementById("nextWeek").onclick=()=>{v3WeekOffset++;v3RenderWeek();v3RenderHabits();};
+document.getElementById("addWeekEntryTop").onclick=()=>v3OpenPlanner();
+document.getElementById("closePlannerModal").onclick=v3ClosePlanner;
+document.getElementById("plannerModalBack").onclick=e=>{if(e.target.id==="plannerModalBack")v3ClosePlanner();};
+document.getElementById("savePlannerEntry").onclick=()=>{
+  const name=document.getElementById("plannerName").value.trim();
+  if(!name){toast("Gib dem Eintrag einen Titel.");return;}
+  const data={
+    id:Date.now()+Math.random(),
+    name,
+    date:document.getElementById("plannerDay").value,
+    time:document.getElementById("plannerTime").value,
+    category:document.getElementById("plannerCategory").value,
+    subject:document.getElementById("plannerSubject").value
+  };
+  state.weekPlans.push(data);
+  saveState();v3ClosePlanner();v3RenderWeek();toast("Wochenplan gespeichert ✓");
+};
+document.getElementById("closeHabitModal").onclick=v3CloseHabit;
+document.getElementById("habitModalBack").onclick=e=>{if(e.target.id==="habitModalBack")v3CloseHabit();};
+document.getElementById("addHabit").onclick=()=>v3OpenHabit();
+document.getElementById("saveHabit").onclick=()=>{
+  const name=document.getElementById("habitName").value.trim();
+  if(!name){toast("Gib deinem Habit einen Namen.");return;}
+  const reward=Math.max(0,Math.min(100,Number(document.getElementById("habitReward").value)||0));
+  const penalty=Math.max(0,Math.min(100,Number(document.getElementById("habitPenalty").value)||0));
+  if(v3HabitEditId){
+    const h=state.habits.find(x=>String(x.id)===String(v3HabitEditId));
+    if(h)Object.assign(h,{name,reward,penalty});
+  }else{
+    state.habits.push({id:Date.now()+Math.random(),name,reward,penalty});
+  }
+  saveState();v3CloseHabit();v3RenderHabits();toast("Habit gespeichert ✓");
+};
+
+document.getElementById("clearTimetable").onclick=()=>{
+  if(confirm("Den kompletten Stundenplan leeren?")){
+    state.timetable={};saveState();v3RenderTimetable();toast("Stundenplan geleert.");
+  }
+};
+
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button");
+  if(!b)return;
+  if(b.dataset.tt){v3SetTimetable(b.dataset.tt);return;}
+  if(b.dataset.planAdd){v3OpenPlanner(b.dataset.planAdd);return;}
+  if(b.dataset.planDelete){
+    if(confirm("Diesen Wochenplan-Eintrag löschen?")){
+      state.weekPlans=state.weekPlans.filter(x=>String(x.id)!==String(b.dataset.planDelete));
+      saveState();v3RenderWeek();toast("Eintrag gelöscht.");
+    }
+    return;
+  }
+  if(b.dataset.habitToggle){v3ToggleHabit(b.dataset.habitToggle);return;}
+  if(b.dataset.habitExcuse){v3ExcuseHabit(b.dataset.habitExcuse);return;}
+  if(b.dataset.habitEdit){v3OpenHabit(b.dataset.habitEdit);return;}
+  if(b.dataset.habitDelete){
+    if(confirm("Dieses Habit und seine zukünftigen/gespeicherten Checks löschen?")){
+      const id=String(b.dataset.habitDelete);
+      state.habits=state.habits.filter(x=>String(x.id)!==id);
+      Object.keys(state.habitChecks).forEach(k=>{if(k.startsWith(id+"_"))delete state.habitChecks[k];});
+      Object.keys(state.habitSettled).forEach(k=>{if(k.startsWith(id+"_"))delete state.habitSettled[k];});
+      saveState();v3RenderHabits();toast("Habit gelöscht.");
+    }
+    return;
+  }
+});
+
+/* Add an "Ausnahme" action on long-press is awkward on iPad, so use a second tap:
+   after a completed/open cell, a prompt offers the exception option. */
+document.addEventListener("contextmenu",e=>{
+  const b=e.target.closest("[data-habit-toggle]");
+  if(!b)return;
+  e.preventDefault();
+  v3ExcuseHabit(b.dataset.habitToggle);
+});
+
+v3FillSubjects();
+v3RenderTimetable();
+v3RenderWeek();
+v3RenderHabits();
+v3RenderTopic();
+
+render();
+
+if(!state.house){
+ setTimeout(()=>chooseHouse(false),300);
+}
+
+function makeOfflineFlashcards(){
+  const input=document.getElementById("libraryText"), out=document.getElementById("flashcardOutput");
+  if(!input||!out)return;
+  const text=input.value.trim();
+  if(!text){out.innerHTML="<p>Bitte füge zuerst Lernmaterial ein.</p>";return;}
+  const cards=[];
+  for(const line of text.split(/\n+/).map(x=>x.trim()).filter(Boolean)){
+    const m=line.match(/^(.{2,90}?)\s*[:–—-]\s*(.{3,250})$/);
+    if(m) cards.push({q:m[1],a:m[2]});
+  }
+  if(!cards.length){
+    for(const s of text.split(/(?<=[.!?])\s+/).filter(x=>x.length>30).slice(0,20))
+      cards.push({q:"Was ist die wichtigste Aussage?",a:s});
+  }
+  out.innerHTML="<div style='margin-top:14px'><b>✨ "+cards.length+" Karte(n) erstellt</b></div>";
+  cards.slice(0,30).forEach((c,i)=>{
+    const el=document.createElement("div");
+    el.style.cssText="margin-top:10px;padding:14px;border-radius:14px;background:rgba(255,255,255,.7);border:1px solid rgba(80,60,40,.12)";
+    el.innerHTML="<b>Karte "+(i+1)+":</b><div>"+esc(c.q)+"</div><hr><b>Antwort:</b> "+esc(c.a);
+    out.appendChild(el);
+  });
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}
+
+</script>
+</body>
+</html>
